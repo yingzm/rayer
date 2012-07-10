@@ -1,0 +1,17 @@
+#globlet.rib
+#assembling an object
+Display "05.tiff" "file" "rgba"
+Projection "perspective" "fov" 40
+Format 150 200 1
+
+WorldBegin
+	Scale 1 1 1	#change these to squash and stretch the goblet
+	Translate 0 0 5
+	Rotate -120 1 0 0
+	
+	Color 1.0 0.978 0.34	#gold
+	Cylinder 1 0 1.5 360	#container 
+	Disk 0 1 360		#base of the container
+	Cylinder 0.25 -1.5 0 360 #stem
+	Disk -1.5 1 360		#base of the goblet
+WorldEnd

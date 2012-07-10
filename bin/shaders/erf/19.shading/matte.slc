@@ -1,0 +1,35 @@
+version Giles 0.3
+surface matte
+param float Ka 0
+param float Kd 0
+local normal Nf 0 0 0
+pushif 1
+popf Ka
+pushif 1
+popf Kd
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+
+pushc Os
+popc Oi
+
+pushv Nf
+diffuse
+pushf Kd
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Cs
+pushc Os
+mulcc
+mulcc
+popc Ci
+
+return

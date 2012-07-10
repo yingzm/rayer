@@ -1,0 +1,67 @@
+version Giles 0.3
+surface myDiffuse
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+param color specularcolor 0 0 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Cdiff 0 0 0
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushif 0
+cset Cdiff
+
+pushif 2
+pushif 3.141593
+divff
+pushv Nf
+pushv P
+illuminance_start
+label 0
+illuminance3 1
+
+pushv Nf
+pushv L
+normalize
+vdot
+pushc Cl
+mulcf
+pushc Cdiff
+addcc
+popc Cdiff
+
+jump 0
+label 1
+
+pushc Os
+popc Oi
+
+pushc Oi
+pushc Cdiff
+pushc Cs
+mulcc
+mulcc
+popc Ci
+
+return

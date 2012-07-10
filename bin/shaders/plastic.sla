@@ -1,0 +1,48 @@
+.info
+surface	plastic
+
+.params
+float	Ka	1
+float	Kd	0.5
+float	Ks	0.5
+float	roughness	0.1
+color	specularcolor	[1 1 1]
+.code
+addr	lstop, 120
+declare	normal	Nf	[0]
+declare	vector	_T24	[24]
+declare	color	_T48	[48]
+declare	color	_T72	[72]
+declare	color	_T96	[96]
+pushv	N
+ccall	normalize_vv
+popv	_T24
+pushv	_T24
+pushv	I
+ccall	faceforward_vvv
+popv	Nf
+ccall	ambient_c_
+popv	_T48
+mulv	_T48, _T48, Ka
+pushv	Nf
+ccall	diffuse_cv
+popv	_T72
+mulv	_T72, _T72, Kd
+addv	_T48, _T48, _T72
+mulvv	_T72, Cs, _T48
+mulv	_T48, specularcolor,	Ks
+pushv	I
+ccall	normalize_vv
+popv	_T24
+negv	_T24
+pushv	Nf
+pushv	_T24
+pushf	roughness
+ccall	specular_cvvf
+popv	_T96
+mulvv	_T48, _T48, _T96
+addv	Ci, _T72, _T48
+movv	Oi, Os
+mulvv	Ci, Ci, Oi
+subr	lstop, 120
+end

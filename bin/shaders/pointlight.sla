@@ -1,0 +1,28 @@
+.info
+light	pointlight
+
+.params
+float	intensity	1
+color	lightcolor	[1 1 1]
+point	from	[0 0 0]
+.data
+string	_Dv0	"shader"
+string	_Dv8	"current"
+.code
+addr	lstop, 32
+pushs	_Dv0
+pushs	_Dv8
+pushv	from
+ccall transform_pssp
+popv	from
+declare	color	_T0	[0]
+declare	float	_T24	[24]
+pushv	from
+ccall	illuminate__p
+jf	_label0
+mulv	_T0, lightcolor, intensity
+dotv	_T24, L, L
+divv	Cl, _T0, _T24
+_label0:
+subr	lstop, 32
+end

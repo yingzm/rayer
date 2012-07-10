@@ -1,0 +1,16 @@
+#COMPILER=/extra/ian/Work/RenderMan/dev/Giles/giles
+COMPILER=giles
+RENDER=angel
+
+for i in *.sl
+do
+echo $i
+TIFF=`basename $i .sl`.tiff
+SHADER=`basename $i .sl`
+
+$COMPILER $i
+cat test.rib | sed s/XXXX/$SHADER/g >$SHADER.rib
+#${RENDER} $SHADER.rib
+#slander -r200 -w$TIFF ${i}c:Cs=1,0,0
+viewer $TIFF
+done

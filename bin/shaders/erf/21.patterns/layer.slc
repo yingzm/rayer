@@ -1,0 +1,123 @@
+version Giles 0.1
+surface layer
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+param color specularcolor 0 0 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+local color red 0 0 0
+local color green 0 0 0
+local color blue 0 0 0
+local float fuzz 0
+local float inTop 0
+local float inLine 0
+local float dist 0
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushif 0
+pushif 0
+pushif 1
+popc red
+pushif 0
+pushif 1
+pushif 0
+popc green
+pushif 1
+pushif 0
+pushif 0
+popc blue
+pushif 0.025
+popf fuzz
+
+pushc green
+popc Ct
+
+pushf t
+pushf fuzz
+pushif 0.5
+addff
+pushf fuzz
+pushif 0.5
+subff
+smoothstep
+popf inTop
+
+pushf inTop
+pushc red
+pushc Ct
+cmix
+popc Ct
+
+pushif 0.5
+pushf s
+subff
+abs
+popf dist
+
+pushf dist
+pushf fuzz
+pushif 0.1
+addff
+pushf fuzz
+pushif 0.1
+subff
+smoothstep
+pushif 1
+subff
+popf inLine
+
+pushf inLine
+pushc blue
+pushc Ct
+cmix
+popc Ct
+
+pushc Os
+popc Oi
+
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf Ks
+pushc specularcolor
+mulcf
+mulcc
+pushv Nf
+diffuse
+pushf Kd
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Ct
+mulcc
+addcc
+pushc Oi
+mulcc
+popc Ci
+
+return

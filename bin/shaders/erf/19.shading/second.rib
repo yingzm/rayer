@@ -1,0 +1,10 @@
+Display "second.tiff" "file" "rgb"
+Projection "perspective" "fov" [30]
+LightSource "ambientlight" 1 "intensity" [0.2]
+LightSource "spotlight" 2 "from" [-1 1 1 ] "to" [0 0 3] "intensity" [3]
+Translate 0 0 4
+WorldBegin
+	Color [1 0 0]
+	Surface "second"
+	Sphere 1 -1 1 360
+WorldEnd

@@ -1,0 +1,7 @@
+#sweep.rib
+Display "sweep.tiff" "file" "rgb"
+Projection "perspective"
+WorldBegin
+	Translate 0 0 4
+	Sphere 2 -2 2 270
+WorldEnd

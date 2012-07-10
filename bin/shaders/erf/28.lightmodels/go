@@ -1,0 +1,17 @@
+if [  `hostname` = "rubicon" ]
+then 
+	VIEWER=open
+	R=
+else
+	VIEWER=viewer
+	R=-r400
+fi
+
+for i in *.sl
+do
+echo $i
+TIFF=`basename $i .sl`.tiff
+giles $i
+slander $R -s -w$TIFF ${i}c:Cs=1,0,0:Ks=0.1
+$VIEWER $TIFF
+done

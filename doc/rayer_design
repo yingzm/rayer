@@ -1,0 +1,182 @@
+Classes:
+	RayEngine		// Main ray-tracing engine
+	AcceStruct		// virtual class for accelerate structure
+	SimpleAcceStruct	// simple accelerate structure(geometries organized in array)
+	RNode			// base class for nodes
+	RCameraNode		// camera node
+	RLightNode		// light node
+	RGeomNode		// geometry node
+
+
+Class Detail:
+
+class RayEngine {
+public:
+	// public methods
+	// Read a rib file, get global environment, and render when EndFrame
+	int ReadRib(const char *filename);	// Read data of the frame
+	int BeginFrame();			
+	void RenderFrame();			// Render current frame, details below
+	void EndFrame();			// Cleanup stuff
+
+private:
+	// private members
+	RayAcceStruct m_root;
+	RCameraNode m_camera;
+	vector<RLightNode> m_lights;
+
+	ShaderVm m_shadervm;
+
+	// private methods
+	ray GenerateRay(RCameraNode &cam, int x, int y);	// Generate a ray from (x,y) using cam
+};
+
+void RenderFrame()
+{
+	for each pixel(x,y) in image {
+		ray = GenerateRay(m_camera, x, y);	// this statement will be replaced if anti-aliasing or 
+							// depth-of-field is enabled
+
+		clr = m_shadervm.Trace(ray);
+	}
+}
+
+class IntersectInfo
+{
+public:
+	Geom *m_geom;
+	ShaderInst m_shader;	
+	point3d m_intpt;
+	IntersectCache m_cache;
+};
+
+class AcceStruct
+{
+public:
+	// public methods
+	bool IntersectNearest(const Ray &r, IntersectInfo &);
+
+	// private methods
+	vector<RGeomNode> m_nodes;
+};
+
+
+
+
+
+
+
+--------------------------------------------------------------------
+surface
+defaultsurface (float Kd = 0.8, Ka = 0.2)
+{
+    float d = normalize(I) . normalize(N);
+    Ci = Cs * (Ka + Kd * d*d);
+    Oi = Os;  Ci *= Oi;
+}
+
+cpushv3	[le+78]
+ccall normalize
+cpopv3 [ls+2]
+cpushv3 [le+30]
+ccall normalize
+cpopv3 [ls+8]
+dotv3	[ls+0], [ls+2], [ls+8]
+muld	[ls+14], [lp+0], [ls+0]		; Kd*d
+muld	[ls+14], [ls+14], [ls+0]	; Kd*d*d
+addd	[ls+14], [lp+2], [ls+14]	; Ka+Kd*d*d
+mulv3	[le+92], [le+0], [ls+14]	; Ci = Cs*(Ka+Kd*d*d);
+movd	[le+98], [le+6]			; Oi = Os
+muld	[le+92], [le+92], [le+98]	; Ci *=Oi
+end
+
+
+===================
+surface
+plastic (float Ka = 1, Kd = 0.5, Ks = 0.5, roughness = 0.1;
+	 color specularcolor = 1;)
+{
+    normal Nf = faceforward (normalize(N),I);
+    Ci = Cs * (Ka*ambient() + Kd*diffuse(Nf)) +
+	 specularcolor * Ks*specular(Nf,-normalize(I),roughness);
+    Oi = Os;  Ci *= Oi;
+}
+
+lp(14): 0(Ka), 2(Kd), 4(Ks), 6(roughness), 8(specularcolor)
+ls: 0(Nf)
+
+cpushv [le+N]
+ccall normalize
+cpopv [ls+6]
+cpushv [le+I]
+cpushv [ls+6]
+ccall faceforward
+cpopv [ls+0]
+ccall ambient
+cpopv [ls+6]
+mulv [ls+6], [ls+6], [lp+0]	Ka*ambient()
+cpushv [ls+0]
+ccall diffuse
+cpop [ls+12]
+mulv [ls+12], [ls+12], [lp+2]	Kd*diffuse(Nf)
+addv [ls+6], [ls+6], [ls+12]	Ka*ambient()+Kd*diffuse(Nf)
+mulv [ls+6], [le+Cs], [ls+6]	Cs*(Ka*ambient()+Kd*diffuse(Nf))
+mulv [ls+18], [lp+8], [lp+4]	specularcolor*Ks
+cpushv [le+I]
+ccall normalize
+cpopv [ls+24]
+subv [ls+24], $0, [ls+24]	-normalize(I)
+cpushd [lp+6]
+cpushv [ls+24]
+cpushv [ls+0]
+ccall specular
+cpop [ls+24]			specular(Nf, -normalize(I), roughness)
+mulv [ls+18], [ls+18], [ls+24]	specularcolor*Ks*specular(Nf, -normalize(I), roughness)
+addv [le+Ci], [ls+6], [ls+18]	Ci = ...
+movv [le+Oi], [le+Os]
+mulv [le+Ci], [le+Ci], [le+Oi]
+end
+
+
+
+
+
+---------------------------------------
+light
+ambientlight (float intensity = 1;
+	      color lightcolor = 1;)
+{
+    Cl = intensity * lightcolor;
+    L = 0;
+}
+
+lp(8): 0(intensity), 2(lightcolor)
+ls(0)
+dotv [le+Cl], [lp+0], [lp+2]
+movvi [le+L], $0
+
+
+--------------------------------------
+light
+distantlight ( float intensity = 1;
+	       color lightcolor = 1;
+	       point from = point "shader" (0,0,0);
+	       point to = point "shader" (0,0,1); )
+{
+    solar (to-from, 0) {
+	Cl = intensity * lightcolor;
+    }
+}
+
+lp(20): 0(intensity), 2(lightcolor), 8(from), 14(to)
+
+
+
+
+-------------------
+vector3d normalize(vector3d, vector3d)
+
+
+
+
+

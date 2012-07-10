@@ -1,0 +1,60 @@
+.info
+surface	paintedplastic
+
+.params
+float	Ka	1
+float	Kd	0.5
+float	Ks	0.5
+float	roughness	0.1
+color	specularcolor	[1 1 1]
+string	texturename	""
+.data
+string	_Dv0	""
+.code
+addr	lstop, 144
+declare	color	_T0	[0]
+declare	normal	Nf	[24]
+declare	vector	_T48	[48]
+declare	color	_T72	[72]
+declare	color	_T96	[96]
+declare	color	_T120	[120]
+movv	Ci, Cs
+nes	texturename, _Dv0
+jf	_label0
+pushs	texturename
+ccall	texture_cs
+popv	_T0
+mulvv	Ci, Ci, _T0
+_label0:
+pushv	N
+ccall	normalize_vv
+popv	_T48
+pushv	_T48
+pushv	I
+ccall	faceforward_vvv
+popv	Nf
+ccall	ambient_c_
+popv	_T72
+mulv	_T72, _T72, Ka
+pushv	Nf
+ccall	diffuse_cv
+popv	_T96
+mulv	_T96, _T96, Kd
+addv	_T72, _T72, _T96
+mulvv	_T96, Ci, _T72
+mulv	_T72, specularcolor,	Ks
+pushv	I
+ccall	normalize_vv
+popv	_T48
+negv	_T48
+pushv	Nf
+pushv	_T48
+pushf	roughness
+ccall	specular_cvvf
+popv	_T120
+mulvv	_T72, _T72, _T120
+addv	Ci, _T96, _T72
+movv	Oi, Os
+mulvv	Ci, Ci, Oi
+subr	lstop, 144
+end

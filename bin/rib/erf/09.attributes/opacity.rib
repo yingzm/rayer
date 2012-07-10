@@ -1,0 +1,22 @@
+Display "opacity.tiff" "file" "rgb"
+Projection "perspective"
+#PixelSamples 3 3
+WorldBegin
+#move everything back 2 units
+Translate 0 0 2
+
+Color [ 1 0 0 ]
+
+AttributeBegin
+	Translate -0.25 0 0
+	Color [ 0 1 0 ]
+	Opacity [ 0.5 0.5 0.5 ]
+	Sphere 1 -1 1 360
+AttributeEnd
+
+AttributeBegin
+	Translate 0.25 0 0
+	Sphere 1 -1 1 360
+AttributeEnd
+
+WorldEnd

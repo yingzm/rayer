@@ -1,0 +1,102 @@
+snoise(p)
+.data
+	float f2	2.0
+	float f1	1.0
+	
+	push? p
+	ccall noise_f?
+	popf _f0
+	mulf _f0, _f0, f2
+	subf _f0, _f0, f1
+	
+	
+filteredsnoise(p, width)
+.data
+	float fdot2	.2
+	float fdot75	.75
+.code
+	push? p
+	ccall noise_f?
+	popf _f0
+	mulf _f0, _f0, f2
+	subf _f0, _f0, f1
+	pushf fdot2
+	pushf fdot75
+	pushf width
+	ccall smoothstep_ffff
+	popf _f1
+	mulf _f0, _f0, _f1
+	
+float filteredabs (float x, dx)
+{
+    float integral (float t) {
+	return sign(t) * 0.5 * t*t;
+    }
+
+    float x0 = x - 0.5*dx;
+    float x1 = x0 + dx;
+    return (integral(x1) - integral(x0)) / dx;
+}
+
+float fdot5	0.5
+	mulf	_f0, fdot5, dx
+	subf	x0, x, _f0
+	addf	x1, x0, dx
+	pushf	x1
+	ccall	sign
+	popf	_f0
+	mulf	_f0, _f0, fdot5
+	mulf	_f0, _f0, x1
+	mulf	_f0, _f0, x1
+	pushf	x0
+	ccall	sign
+	popf	_f1
+	mulf	_f1, _f1, fdot5
+	mulf	_f1, _f1, x0
+	mulf	_f1, _f1, x0
+	subf	_f0, _f0, _f1
+	divf	_f0, _f0, dx
+	
+	
+	
+	
+float turbulence (point p; float filtwidth;
+                  uniform float octaves, lacunarity, gain)
+
+.data
+	float f0	0.0
+	
+.code
+	declare float amp	[0]
+	declare point pp	[2]
+	declare float sum	[8]
+	declare float fw	[10]
+	declare float i		[12]
+	
+	addr	lstop, ?
+	movf	amp, f1
+	movp	pp, p
+	movf	sum, f0
+	movf	fw, filtwidth
+	movf	i, f0
+
+label0:	
+	ltf	i, octaves
+	jf	label1
+	declare float n	[14]
+	addr	lstop, 2
+	filteredsnoise(pp, fw)
+	popf	n
+	filteredabs(n, fw)
+	popf	_f0
+	mulf	_f0, amp, _f0
+	addf	sum, sum, _f0
+	mulf	amp, amp, gain
+	mulp	pp, pp, lacunarity
+	mulf	fw, fw, lacunarity
+	subr	lstop, 2
+	subf	i, f1
+	jmp	label0
+	
+label1:
+	end

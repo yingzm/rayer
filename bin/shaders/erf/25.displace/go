@@ -1,0 +1,8 @@
+for i in *.sl
+do
+echo $i
+TIFF=`basename $i .sl`.tiff
+giles $i
+slander -r200 -s -w$TIFF ${i}c $SHADERS/plastic.slc:Cs=1,0,0:Ks=0.1
+viewer $TIFF
+done

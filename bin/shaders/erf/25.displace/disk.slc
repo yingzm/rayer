@@ -1,0 +1,60 @@
+version Giles 0.1
+displacement disk
+param float Km 0
+local normal NN 0 0 0
+local float mag 0
+local float dist 0
+local float fuzz 0
+pushif 0.1
+popf Km
+return
+
+pushv N
+normalize
+popv NN
+pushif 0
+popf mag
+pushif 0.5
+pushf t
+subff
+pushif 0.5
+pushf t
+subff
+mulff
+pushif 0.5
+pushf s
+subff
+pushif 0.5
+pushf s
+subff
+mulff
+addff
+sqrt
+popf dist
+pushif 0.05
+popf fuzz
+
+pushf dist
+pushf fuzz
+pushif 0.3
+addff
+pushf fuzz
+pushif 0.3
+subff
+smoothstep
+popf mag
+
+pushv NN
+pushf Km
+pushf mag
+mulff
+mulfv
+pushv P
+addvv
+popv P
+
+pushv P
+calculatenormal
+popv N
+
+return

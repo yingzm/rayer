@@ -1,0 +1,14 @@
+#distantlight.rib
+Display "distantlight.tiff" "file" "rgb"
+
+Projection "perspective" "fov" [ 30 ]
+
+Translate 0 0 5
+
+WorldBegin
+	LightSource "distantlight" 1 "to" [ 1 0 0 ] "intensity" [ 1 ]
+
+	Color [ 1 0 0 ]
+	Surface "plastic"
+	Sphere 1 -1 1 360
+WorldEnd

@@ -1,0 +1,66 @@
+version Giles 0.1
+surface rlramp
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+param color specularcolor 0 0 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+
+pushc Cs
+pushf s
+pushif 1
+subff
+mulfc
+popc Ct
+
+pushc Os
+popc Oi
+
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf Ks
+pushc specularcolor
+mulcf
+mulcc
+pushv Nf
+diffuse
+pushf Kd
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Ct
+mulcc
+addcc
+pushc Oi
+mulcc
+popc Ci
+
+return

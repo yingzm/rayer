@@ -1,0 +1,13 @@
+Classes:
+	point3d
+	vector3d
+	unit_vector3d
+	matrix4d
+
+	color4d
+
+	bbox
+		aabox
+
+	ray
+	

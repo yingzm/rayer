@@ -1,0 +1,7 @@
+#min.rib - a minimal scene
+Display "min.tiff" "file" "rgb"
+Projection "perspective"
+WorldBegin
+	Translate 0 0 2
+	Sphere 1 -1 1 360
+WorldEnd

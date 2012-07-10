@@ -1,0 +1,216 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.0'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      3943,        143]*)
+(*NotebookOutlinePosition[      4587,        165]*)
+(*  CellTagsIndexPosition[      4543,        161]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+    \(theta = u*thetamax\), "\[IndentingNewLine]", 
+    \(z\  = \ v*\((zmax - zmin)\)\), "\[IndentingNewLine]", 
+    \(r\  = \ rmax*\@\(z/zmax\)\), "\[IndentingNewLine]", 
+    \(x\  = \ r*Cos[theta]\), "\[IndentingNewLine]", 
+    \(y\  = \ r*Sin[theta]\)}], "Input"],
+
+Cell[BoxData[
+    \(thetamax\ u\)], "Output"],
+
+Cell[BoxData[
+    \(v\ \((zmax - zmin)\)\)], "Output"],
+
+Cell[BoxData[
+    RowBox[{\(General::"spell1"\), \(\(:\)\(\ \)\), "\<\"Possible spelling \
+error: new symbol name \\\"\\!\\(rmax\\)\\\" is similar to existing symbol \\\
+\"\\!\\(zmax\\)\\\". \\!\\(\\*ButtonBox[\\\"More\[Ellipsis]\\\", \
+ButtonStyle->\\\"RefGuideLinkText\\\", ButtonFrame->None, \
+ButtonData:>\\\"General::spell1\\\"]\\)\"\>"}]], "Message"],
+
+Cell[BoxData[
+    \(rmax\ \@\(\(v\ \((zmax - zmin)\)\)\/zmax\)\)], "Output"],
+
+Cell[BoxData[
+    \(rmax\ \@\(\(v\ \((zmax - zmin)\)\)\/zmax\)\ Cos[
+        thetamax\ u]\)], "Output"],
+
+Cell[BoxData[
+    \(rmax\ \@\(\(v\ \((zmax - zmin)\)\)\/zmax\)\ Sin[
+        thetamax\ u]\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[PartialD]\_u\ x\)], "Input"],
+
+Cell[BoxData[
+    \(\(-rmax\)\ thetamax\ \@\(\(v\ \((zmax - zmin)\)\)\/zmax\)\ Sin[
+        thetamax\ u]\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[PartialD]\_u\ y\)], "Input"],
+
+Cell[BoxData[
+    \(rmax\ thetamax\ \@\(\(v\ \((zmax - zmin)\)\)\/zmax\)\ Cos[
+        thetamax\ u]\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[PartialD]\_u\ z\)], "Input"],
+
+Cell[BoxData[
+    \(0\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[PartialD]\_v\ x\)], "Input"],
+
+Cell[BoxData[
+    \(\(rmax\ \((zmax - zmin)\)\ Cos[thetamax\ u]\)\/\(2\ zmax\ \@\(\(v\ \
+\((zmax - zmin)\)\)\/zmax\)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[PartialD]\_v\ y\)], "Input"],
+
+Cell[BoxData[
+    \(\(rmax\ \((zmax - zmin)\)\ Sin[thetamax\ u]\)\/\(2\ zmax\ \@\(\(v\ \
+\((zmax - zmin)\)\)\/zmax\)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[PartialD]\_v\ z\)], "Input"],
+
+Cell[BoxData[
+    \(zmax - zmin\)], "Output"]
+}, Open  ]]
+},
+FrontEndVersion->"5.0 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 695}},
+WindowSize->{496, 599},
+WindowMargins->{{73, Automatic}, {Automatic, 0}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 281, 5, 112, "Input"],
+Cell[2060, 60, 45, 1, 29, "Output"],
+Cell[2108, 63, 54, 1, 29, "Output"],
+Cell[2165, 66, 356, 5, 52, "Message"],
+Cell[2524, 73, 76, 1, 51, "Output"],
+Cell[2603, 76, 103, 2, 51, "Output"],
+Cell[2709, 80, 103, 2, 51, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2849, 87, 50, 1, 30, "Input"],
+Cell[2902, 90, 118, 2, 51, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3057, 97, 50, 1, 30, "Input"],
+Cell[3110, 100, 113, 2, 51, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3260, 107, 50, 1, 30, "Input"],
+Cell[3313, 110, 35, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3385, 116, 50, 1, 30, "Input"],
+Cell[3438, 119, 132, 2, 68, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3607, 126, 50, 1, 30, "Input"],
+Cell[3660, 129, 132, 2, 68, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3829, 136, 50, 1, 30, "Input"],
+Cell[3882, 139, 45, 1, 29, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

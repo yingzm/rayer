@@ -1,0 +1,7 @@
+.info
+surface	constant
+
+.code
+movv	Oi, Os
+mulvv	Ci, Oi, Cs
+end

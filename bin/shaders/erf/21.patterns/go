@@ -1,0 +1,8 @@
+for i in *.sl
+do
+echo $i
+TIFF=`basename $i .sl`.tiff
+giles $i
+slander -r300 -g2.0  -w$TIFF ${i}c:Cs=1,0,0:Ks=0.2
+#viewer $TIFF
+done

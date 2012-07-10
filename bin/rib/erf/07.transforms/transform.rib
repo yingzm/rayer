@@ -1,0 +1,16 @@
+#transform.rib
+Display "transform.tiff" "file" "rgb"
+Projection "perspective"
+
+WorldBegin
+	#move everything back 2 units
+	Translate 0 0 2
+
+	#Everything that follows is one unit left
+	Translate -1 0 0
+	Sphere 1 -1 1 360
+
+	#Everything that follows is one unit right
+	Translate 1 0 0
+	Sphere 1 -1 1 360
+WorldEnd

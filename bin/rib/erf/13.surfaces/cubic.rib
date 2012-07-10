@@ -1,0 +1,21 @@
+#cubic.rib
+Display "cubic.tiff" "file" "rgb"
+Projection "perspective" "fov" [ 30 ]
+
+Translate -0.5 -0.5 3
+
+WorldBegin
+        LightSource "ambientlight" 1 "intensity" [ 0.1]
+        LightSource "pointlight" 2
+                "from" [-2 2 -2]
+                "intensity" [ 10 ]
+
+	Color [ 1 0 0 ]
+	Surface "plastic"
+	Rotate 40 1 0 0
+
+	Patch "bicubic" "P" [ 0 0   0    0.4 0    0   0.6 0    0   1 0   0
+                          0 0.4 0    0.4 0.4  3   0.6 0.4 -3   1 0.4 0
+                          0 0.6 0    0.4 0.6 -3   0.6 0.6  3   1 0.6 0
+			              0 1   0    0.4 1    0   0.6 1    0   1 1   0]
+WorldEnd

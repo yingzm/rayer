@@ -1,0 +1,9 @@
+for i in [0-9]*
+do
+echo $i
+cd $i
+pwd
+../brighten *.rib
+cd ..
+done
+

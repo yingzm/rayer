@@ -1,0 +1,20 @@
+#nearfarlight.rib
+Display "nearfarlight.tiff" "file" "rgb"
+Clipping 1 10
+Projection "perspective" "fov" [ 25 ]
+
+Translate 1 -0.5 8
+Rotate -45 1 0 0
+WorldBegin
+        LightSource "ambientlight" 1 "intensity" [ 0.1]
+        LightSource "nearfarlight" 2
+                "from" [ 1 1 0 ]
+
+	Surface "plastic"
+	Color [ 0 1 0 ]
+	Patch "bilinear" "P" [ -5 0 -5
+			       5 0 -5
+			      -5 0 5
+			       5 0 5 ]
+
+WorldEnd

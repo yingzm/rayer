@@ -1,0 +1,8 @@
+1. calculate dpdu for all primitives
+2. calculate normal for hyperboloid and paraboloid
+3. opacity  support
+4. Support return in parameterlist
+5. Du(x) calculation
+6. built-in functions
+	filteredstep
+	Deriv

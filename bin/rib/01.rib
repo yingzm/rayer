@@ -1,0 +1,5 @@
+#ortho disk1.RIB
+#using a default camera
+WorldBegin
+	Disk 1 0.5 360
+WorldEnd

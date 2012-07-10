@@ -1,0 +1,6 @@
+for i in $*
+do
+NAME=`basename $i .slc`
+echo $NAME
+slander -r300 -w${NAME}.tiff -g2.0 $NAME.slc:Cs=1,0,0
+done

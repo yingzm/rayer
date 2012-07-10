@@ -1,0 +1,33 @@
+.info
+light	distantlight
+
+.params
+float	intensity	1
+color	lightcolor	[1 1 1]
+point	from	[0 0 0]
+point	to	[0 0 1]
+.data
+string	_Dv0	"shader"
+string	_Dv8	"current"
+float	_Df16	0
+.code
+addr	lstop, 24
+pushs	_Dv0
+pushs	_Dv8
+pushv	from
+ccall transform_pssp
+popv	from
+pushs	_Dv0
+pushs	_Dv8
+pushv	to
+ccall transform_pssp
+popv	to
+declare	vector	_T0	[0]
+subv	_T0, to, from
+pushv	_T0
+pushf	_Df16
+ccall	solar__vf
+mulv	Cl, lightcolor, intensity
+_label0:
+subr	lstop, 24
+end

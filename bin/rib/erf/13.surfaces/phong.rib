@@ -1,0 +1,21 @@
+#phong.rib
+Display "phong.tiff" "file" "rgb"
+Projection "perspective" "fov" [ 30 ]
+
+Translate -0.5 -0.5 3
+
+WorldBegin
+    LightSource "ambientlight" 1 "intensity" [ 0.1 ]
+    LightSource "pointlight" 2 "from" [ -2 0.5 -2 ] "intensity" [ 7 ]
+
+    Color [ 1 0 0 ]
+    Surface "plastic"
+    
+    #"Flat" Polygons, have a crease when joined
+    Polygon "P" [   0.0 0.55  0.0 0.5 0.55 -0.25 0.5 1.0  -0.25 0.0 1.0   0.0]
+    Polygon "P" [   0.5 0.55 -0.25 1.0 0.55  0.0 1.0 1.0   0.0 0.5 1.0  -0.25]
+            
+    #Normals Assigned to hide join`
+    Polygon "P" [   0.0 0.0  0.0 0.5 0.0 -0.25 0.5 0.45 -0.25 0.0 0.45  0.0] "N" [   0.25 0 0.5 0.00 0 1.0 0.00 0 1.0 0.25 0 0.5 ]
+    Polygon "P" [   0.5 0.0 -0.25 1.0 0.0  0.0 1.0 0.45  0.0 0.5 0.45 -0.25] "N" [   0.00 0 1.0 -0.25 0 0.5 -0.25 0 0.5 0.00 0 1.0 ]
+WorldEnd

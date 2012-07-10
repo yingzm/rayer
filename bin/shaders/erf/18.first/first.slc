@@ -1,0 +1,12 @@
+version Giles 0.1
+surface first
+
+pushc Os
+popc Oi
+
+pushc Oi
+pushc Cs
+mulcc
+popc Ci
+
+return

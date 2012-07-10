@@ -1,0 +1,185 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.0'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      5715,        134]*)
+(*NotebookOutlinePosition[      6361,        156]*)
+(*  CellTagsIndexPosition[      6317,        152]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+    \(v = \(z0 + dz*t - z1\)\/\(z2 - z1\)\), "\[IndentingNewLine]", 
+    \(\((x0 + dx*t)\)\^2 + \((y0 + dy*t)\)\^2 - \((\((1 - v)\)*x1 + \
+v*x2)\)\^2 - \((\((1 - v)\)*y1 + v*y2)\)\^2\)}], "Input"],
+
+Cell[BoxData[
+    \(\(dz\ t + z0 - z1\)\/\(\(-z1\) + z2\)\)], "Output"],
+
+Cell[BoxData[
+    \(\((dx\ t + x0)\)\^2 + \((dy\ t + y0)\)\^2 - \((\(x2\ \((dz\ t + z0 - \
+z1)\)\)\/\(\(-z1\) + z2\) + x1\ \((1 - \(dz\ t + z0 - z1\)\/\(\(-z1\) + z2\))\
+\))\)\^2 - \((\(y2\ \((dz\ t + z0 - z1)\)\)\/\(\(-z1\) + z2\) + y1\ \((1 - \
+\(dz\ t + z0 - z1\)\/\(\(-z1\) + z2\))\))\)\^2\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(CoefficientList[Out[7], \ t]\)], "Input"],
+
+Cell[BoxData[
+    \({x0\^2 - x1\^2 + y0\^2 - 
+        y1\^2 - \(x1\^2\ z0\^2\)\/\((\(-z1\) + z2)\)\^2 + \(2\ x1\ x2\ \
+z0\^2\)\/\((\(-z1\) + z2)\)\^2 - \(x2\^2\ z0\^2\)\/\((\(-z1\) + z2)\)\^2 - \
+\(y1\^2\ z0\^2\)\/\((\(-z1\) + z2)\)\^2 + \(2\ y1\ y2\ z0\^2\)\/\((\(-z1\) + \
+z2)\)\^2 - \(y2\^2\ z0\^2\)\/\((\(-z1\) + z2)\)\^2 + \(2\ x1\^2\ z0\ \
+z1\)\/\((\(-z1\) + z2)\)\^2 - \(4\ x1\ x2\ z0\ z1\)\/\((\(-z1\) + z2)\)\^2 + \
+\(2\ x2\^2\ z0\ z1\)\/\((\(-z1\) + z2)\)\^2 + \(2\ y1\^2\ z0\ \
+z1\)\/\((\(-z1\) + z2)\)\^2 - \(4\ y1\ y2\ z0\ z1\)\/\((\(-z1\) + z2)\)\^2 + \
+\(2\ y2\^2\ z0\ z1\)\/\((\(-z1\) + z2)\)\^2 - \(x1\^2\ z1\^2\)\/\((\(-z1\) + \
+z2)\)\^2 + \(2\ x1\ x2\ z1\^2\)\/\((\(-z1\) + z2)\)\^2 - \(x2\^2\ \
+z1\^2\)\/\((\(-z1\) + z2)\)\^2 - \(y1\^2\ z1\^2\)\/\((\(-z1\) + z2)\)\^2 + \
+\(2\ y1\ y2\ z1\^2\)\/\((\(-z1\) + z2)\)\^2 - \(y2\^2\ z1\^2\)\/\((\(-z1\) + \
+z2)\)\^2 + \(2\ x1\^2\ z0\)\/\(\(-z1\) + z2\) - \(2\ x1\ x2\ z0\)\/\(\(-z1\) \
++ z2\) + \(2\ y1\^2\ z0\)\/\(\(-z1\) + z2\) - \(2\ y1\ y2\ z0\)\/\(\(-z1\) + \
+z2\) - \(2\ x1\^2\ z1\)\/\(\(-z1\) + z2\) + \(2\ x1\ x2\ z1\)\/\(\(-z1\) + z2\
+\) - \(2\ y1\^2\ z1\)\/\(\(-z1\) + z2\) + \(2\ y1\ y2\ z1\)\/\(\(-z1\) + \
+z2\), 2\ dx\ x0 + 
+        2\ dy\ y0 - \(2\ dz\ x1\^2\ z0\)\/\((\(-z1\) + z2)\)\^2 + \(4\ dz\ x1\
+\ x2\ z0\)\/\((\(-z1\) + z2)\)\^2 - \(2\ dz\ x2\^2\ z0\)\/\((\(-z1\) + \
+z2)\)\^2 - \(2\ dz\ y1\^2\ z0\)\/\((\(-z1\) + z2)\)\^2 + \(4\ dz\ y1\ y2\ \
+z0\)\/\((\(-z1\) + z2)\)\^2 - \(2\ dz\ y2\^2\ z0\)\/\((\(-z1\) + z2)\)\^2 + \
+\(2\ dz\ x1\^2\ z1\)\/\((\(-z1\) + z2)\)\^2 - \(4\ dz\ x1\ x2\ z1\)\/\((\(-z1\
+\) + z2)\)\^2 + \(2\ dz\ x2\^2\ z1\)\/\((\(-z1\) + z2)\)\^2 + \(2\ dz\ y1\^2\ \
+z1\)\/\((\(-z1\) + z2)\)\^2 - \(4\ dz\ y1\ y2\ z1\)\/\((\(-z1\) + z2)\)\^2 + \
+\(2\ dz\ y2\^2\ z1\)\/\((\(-z1\) + z2)\)\^2 + \(2\ dz\ x1\^2\)\/\(\(-z1\) + \
+z2\) - \(2\ dz\ x1\ x2\)\/\(\(-z1\) + z2\) + \(2\ dz\ y1\^2\)\/\(\(-z1\) + z2\
+\) - \(2\ dz\ y1\ y2\)\/\(\(-z1\) + z2\), 
+      dx\^2 + 
+        dy\^2 - \(dz\^2\ x1\^2\)\/\((\(-z1\) + z2)\)\^2 + \(2\ dz\^2\ x1\ \
+x2\)\/\((\(-z1\) + z2)\)\^2 - \(dz\^2\ x2\^2\)\/\((\(-z1\) + z2)\)\^2 - \
+\(dz\^2\ y1\^2\)\/\((\(-z1\) + z2)\)\^2 + \(2\ dz\^2\ y1\ y2\)\/\((\(-z1\) + \
+z2)\)\^2 - \(dz\^2\ y2\^2\)\/\((\(-z1\) + z2)\)\^2}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(Solve[{xr*x - yr*y == X, \ xr*y + yr*x \[Equal] Y}, \ {x, \ 
+        y}]\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{\(General::"ivar"\), \(\(:\)\(\ \)\), "\<\"\\!\\(\\(\\(ty\\\\ \
+xr\\)\\) + \\(\\(tx\\\\ yr\\)\\)\\) is not a valid variable. \
+\\!\\(\\*ButtonBox[\\\"More\[Ellipsis]\\\", ButtonStyle->\\\"RefGuideLinkText\
+\\\", ButtonFrame->None, ButtonData:>\\\"General::ivar\\\"]\\)\"\>"}]], \
+"Message"],
+
+Cell[BoxData[
+    RowBox[{\(General::"ivar"\), \(\(:\)\(\ \)\), "\<\"\\!\\(\\(\\(ty\\\\ \
+xr\\)\\) + \\(\\(tx\\\\ yr\\)\\)\\) is not a valid variable. \
+\\!\\(\\*ButtonBox[\\\"More\[Ellipsis]\\\", ButtonStyle->\\\"RefGuideLinkText\
+\\\", ButtonFrame->None, ButtonData:>\\\"General::ivar\\\"]\\)\"\>"}]], \
+"Message"],
+
+Cell[BoxData[
+    \(Solve[{\(-C\) + A\ x - B\ \((ty\ xr + tx\ yr)\) \[Equal] 
+          0, \(-D\) + A\ x + B\ \((ty\ xr + tx\ yr)\) \[Equal] 0}, {x, 
+        ty\ xr + tx\ yr}]\)], "Output"]
+}, Open  ]]
+},
+FrontEndVersion->"5.0 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 695}},
+WindowSize->{496, 599},
+WindowMargins->{{Automatic, -17}, {Automatic, -1}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 211, 3, 83, "Input"],
+Cell[1990, 58, 71, 1, 42, "Output"],
+Cell[2064, 61, 307, 4, 98, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2408, 70, 61, 1, 30, "Input"],
+Cell[2472, 73, 2255, 32, 560, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4764, 110, 105, 2, 30, "Input"],
+Cell[4872, 114, 316, 5, 22, "Message"],
+Cell[5191, 121, 316, 5, 22, "Message"],
+Cell[5510, 128, 189, 3, 48, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

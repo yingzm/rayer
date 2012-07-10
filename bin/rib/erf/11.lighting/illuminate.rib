@@ -1,0 +1,25 @@
+#illuminate.rib
+Display "illuminate.tiff" "file" "rgb"
+Projection "perspective" "fov" [20]
+Translate 0 0 10
+
+WorldBegin
+	LightSource "pointlight" 1 "from" [4 3 -5] "intensity" [16]
+	LightSource "pointlight" 2 "from" [-4 3 -5] "intensity" [16]
+	
+	Surface "plastic"
+	Color [ 1 0 0 ]
+	
+AttributeBegin
+	Illuminate 1 1
+	Translate -0.5 0 0
+	Sphere 1 -1 1 360
+AttributeEnd
+
+AttributeBegin
+	Illuminate 1 0
+	Translate 0.5 0 0
+	Sphere 1 -1 1 360
+AttributeEnd
+
+WorldEnd

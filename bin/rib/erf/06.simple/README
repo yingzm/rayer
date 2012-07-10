@@ -1,0 +1,7 @@
+Essential RenderMan
+
+a minimal RIB file
+
+typimg "render min.rib" will create "min.tiff"
+
+more simply typing "make" will render and preview the image

@@ -1,0 +1,27 @@
+.info
+surface	defaultsurface
+
+.params
+float	Kd	0.8
+float	Ka	0.2
+.code
+declare	float	d	[0]
+declare	vector	_T8	[8]
+declare	vector	_T32	[32]
+declare	float	_T56	[56]
+addr	lstop, 64
+pushv	I
+ccall	normalize_vv
+popv	_T8
+pushv	N
+ccall	normalize_vv
+popv	_T32
+dotv	d, _T8, _T32
+mulf	_T56, Kd, d
+mulf	_T56, _T56, d
+addf	_T56, Ka, _T56
+mulv	Ci, Cs,	_T56
+movv	Oi, Os
+mulvv	Ci, Ci, Oi
+subr	lstop, 64
+end

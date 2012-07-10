@@ -1,0 +1,14 @@
+Projection "perspective" "fov" 40
+Display "09.tiff" "file" "rgba"
+Format 300 200 1
+
+Translate 0 0 5
+Rotate -120 1 0 0 
+Rotate 25 0 0 1
+
+WorldBegin
+	LightSource "ambientlight" 1 "intensity" 1
+	LightSource "distantlight" 2 "intensity" 1.5 "from" [0 0 4] "to" [0 0 0]
+	Surface "paintedplastic" "texturename" "tex0.tiff" "roughness" 0.01
+	Sphere 1 -1 1 360
+WorldEnd

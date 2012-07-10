@@ -1,0 +1,8 @@
+BrowserHeight0 = 438;
+ViewerShelf0 = "~/Work/RenderMan/Text/EssentialBook/RIB";
+BrowserWidth0 = 458;
+BrowserView0 = Browser;
+BrowserRoot0 = /extra/ian/Work/RenderMan/Text/EssentialBook/RIB;
+BrowserShelfRows0 = 1;
+BrowserTop0 = "34 539";
+BrowserDir0 = /extra/ian/Work/RenderMan/Text/EssentialBook/RIB/18.particles;

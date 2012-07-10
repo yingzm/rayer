@@ -1,0 +1,462 @@
+.info
+surface	brick
+
+.params
+float	Ka	1
+float	Kd	1
+color	brickcolor	[0.6 0.1 0.1]
+color	mortarcolor	[0.6 0.6 0.6]
+float	raggedamp	0.04
+float	raggedfreq	12
+float	jagged	0.006
+float	brickvary	0.3
+float	brickwidth	0.28
+float	brickheight	0.07
+float	mortarthickness	0.014
+float	rowvary	0.5
+float	pitting	0.01
+float	pockfrequency	10
+float	groovedepth	0.01
+.data
+string	_Dv0	"rgb"
+vector	_Dv4	[0.6 0.1 0.1]
+vector	_Dv28	[0.6 0.6 0.6]
+float	_Df52	0.5
+float	_Df60	1.5
+float	_Df68	1e-006
+float	_Df76	0.2
+float	_Df84	1
+float	_Df92	0
+float	_Df100	103
+float	_Df108	2
+float	_Df116	5.15
+float	_Df124	23.8
+float	_Df132	11.4
+float	_Df140	7.2
+float	_Df148	0.85
+float	_Df156	1.3
+float	_Df164	0.25
+.code
+addr	lstop, 392
+declare	color	bcolor	[0]
+declare	color	Ct	[24]
+declare	normal	Nf	[48]
+declare	float	sbrick	[72]
+declare	float	tbrick	[80]
+declare	float	w	[88]
+declare	float	h	[96]
+declare	float	ss	[104]
+declare	float	tt	[112]
+declare	float	swidth	[120]
+declare	float	twidth	[128]
+declare	float	BMWIDTH	[136]
+declare	float	BMHEIGHT	[144]
+declare	float	MWF	[152]
+declare	float	_T160	[160]
+declare	float	MHF	[168]
+declare	float	whichbrick	[176]
+declare	float	fact	[184]
+declare	float	disp	[192]
+declare	float	_T200	[200]
+declare	point	_T208	[208]
+declare	float	_T232	[232]
+declare	float	_T240	[240]
+declare	point	_T248	[248]
+declare	float	_T272	[272]
+declare	float	_T280	[280]
+declare	float	_T288	[288]
+declare	vector	_T296	[296]
+declare	color	_T320	[320]
+declare	color	_T344	[344]
+declare	color	_T368	[368]
+addf	BMWIDTH, brickwidth, mortarthickness
+addf	BMHEIGHT, brickheight, mortarthickness
+mulf	_T160, mortarthickness, _Df52
+divf	MWF, _T160, BMWIDTH
+mulf	_T160, mortarthickness, _Df52
+divf	MHF, _T160, BMHEIGHT
+pushf	s
+ccall	Du_ff
+popf	_T160
+mulf	_T160, _T160, du
+pushf	_T160
+ccall	abs_ff
+popf	_T160
+pushf	s
+ccall	Dv_ff
+popf	_T200
+mulf	_T200, _T200, dv
+pushf	_T200
+ccall	abs_ff
+popf	_T200
+addf	_T160, _T160, _T200
+pushf	_T160
+pushf	_Df68
+ccall	max_fff
+popf	_T200
+pushf	_T200
+pushf	_Df68
+ccall	max_fff
+popf	_T160
+mulf	_T200, _Df60, _T160
+divf	swidth, _T200, BMWIDTH
+pushf	t
+ccall	Du_ff
+popf	_T160
+mulf	_T200, _T160, du
+pushf	_T200
+ccall	abs_ff
+popf	_T160
+pushf	t
+ccall	Dv_ff
+popf	_T200
+mulf	_T200, _T200, dv
+pushf	_T200
+ccall	abs_ff
+popf	_T200
+addf	_T160, _T160, _T200
+pushf	_T160
+pushf	_Df68
+ccall	max_fff
+popf	_T200
+pushf	_T200
+pushf	_Df68
+ccall	max_fff
+popf	_T160
+mulf	_T200, _Df60, _T160
+divf	twidth, _T200, BMHEIGHT
+movf	_T160, s
+movf	_T200, t
+nef	jagged, _Df92
+jf	_label0
+mulf	_T232, s, _Df84
+divf	_T232, _T232, BMWIDTH
+mulf	_T240, t, _Df84
+divf	_T240, _T240, BMHEIGHT
+pushf	_T232
+pushf	_T240
+ccall	noise_pff
+popv	_T248
+movv	_T208, _T248
+pushv	_T208
+ccall	xcomp_fp
+popf	_T232
+mulf	_T240, jagged, _T232
+addf	_T160, _T160, _T240
+pushv	_T208
+ccall	ycomp_fp
+popf	_T232
+mulf	_T160, jagged, _T232
+addf	_T200, _T200, _T160
+_label0:
+divf	ss, _T160, BMWIDTH
+divf	tt, _T200, BMHEIGHT
+pushf	tt
+ccall	floor_ff
+popf	tbrick
+mulf	_T240, _Df52, tbrick
+pushf	_T240
+pushf	_Df84
+ccall	mod_fff
+popf	_T232
+addf	ss, ss, _T232
+addf	_T200, tbrick, _Df52
+pushf	_T200
+ccall	noise_ff
+popf	_T160
+subf	_T240, _T160, _Df52
+mulf	_T232, _Df76, _T240
+addf	ss, ss, _T232
+pushf	ss
+ccall	floor_ff
+popf	sbrick
+subf	ss, ss, sbrick
+subf	tt, tt, tbrick
+mulf	_T200, _Df100, sbrick
+addf	whichbrick, _T200, tbrick
+mulf	_T160, tbrick, _Df116
+addf	_T240, s, _T160
+mulf	_T232, _T240, raggedfreq
+mulf	_T200, sbrick, _Df124
+addf	_T160, t, _T200
+mulf	_T240, _T160, raggedfreq
+pushf	_T232
+pushf	_T240
+ccall	noise_fff
+popf	_T200
+movf	_T160, _T200
+mulf	_T232, _Df108, _T200
+subf	_T240, _T232, _Df84
+mulf	_T160, raggedamp, _T240
+addf	ss, ss, _T160
+mulf	_T232, tbrick, _Df132
+addf	_T240, s, _T232
+mulf	_T160, _T240, raggedfreq
+mulf	_T232, sbrick, _Df140
+addf	_T240, t, _T232
+mulf	_T232, _T240, raggedfreq
+pushf	_T160
+pushf	_T232
+ccall	noise_fff
+popf	_T240
+movf	_T160, _T240
+mulf	_T232, _Df108, _T240
+subf	_T160, _T232, _Df84
+mulf	_T232, raggedamp, _T160
+addf	tt, tt, _T232
+divf	_T160, raggedamp, _Df108
+mulf	_T232, tbrick, _Df116
+addf	_T232, s, _T232
+mulf	_T232, _T232, raggedfreq
+mulf	_T232, _T232, _Df108
+mulf	_T272, sbrick, _Df124
+addf	_T272, t, _T272
+mulf	_T272, _T272, raggedfreq
+mulf	_T272, _T272, _Df108
+pushf	_T232
+pushf	_T272
+ccall	noise_fff
+popf	_T232
+movf	_T272, _T232
+mulf	_T272, _Df108, _T232
+subf	_T272, _T272, _Df84
+mulf	_T160, _T160, _T272
+addf	ss, ss, _T160
+divf	_T272, raggedamp, _Df108
+mulf	_T160, tbrick, _Df132
+addf	_T160, s, _T160
+mulf	_T160, _T160, raggedfreq
+mulf	_T160, _T160, _Df108
+mulf	_T280, sbrick, _Df140
+addf	_T280, t, _T280
+mulf	_T280, _T280, raggedfreq
+mulf	_T280, _T280, _Df108
+pushf	_T160
+pushf	_T280
+ccall	noise_fff
+popf	_T160
+movf	_T280, _T160
+mulf	_T280, _Df108, _T160
+subf	_T280, _T280, _Df84
+mulf	_T272, _T272, _T280
+addf	tt, tt, _T272
+gef	swidth, _Df84
+jf	_label2
+mulf	_T280, _Df108, MWF
+subf	w, _Df84, _T280
+jmp	_label1
+_label2:
+subf	_T272, _Df84, MWF
+divf	_T288, swidth, _Df108
+subf	_T280, ss, _T288
+addf	_T288, _T280, swidth
+pushf	_T288
+pushf	_T272
+ccall	min_fff
+popf	_T280
+pushf	_T280
+pushf	MWF
+ccall	max_fff
+popf	_T288
+subf	_T280, _T280, _T288
+divf	_T288, _T280, swidth
+pushf	_Df92
+pushf	_T288
+ccall	max_fff
+popf	_T280
+movf	_T288, _T280
+divf	_T280, MWF, swidth
+subf	_T272, _Df84, _T280
+pushf	_T272
+pushf	_Df92
+ccall	max_fff
+popf	_T280
+pushf	_T288
+pushf	_T280
+pushf	_Df84
+ccall	clamp_ffff
+popf	w
+_label1:
+gef	twidth, _Df84
+jf	_label4
+mulf	_T272, _Df108, MHF
+subf	h, _Df84, _T272
+jmp	_label3
+_label4:
+subf	_T288, _Df84, MHF
+divf	_T272, twidth, _Df108
+subf	_T280, tt, _T272
+addf	_T272, _T280, twidth
+pushf	_T272
+pushf	_T288
+ccall	min_fff
+popf	_T280
+pushf	_T280
+pushf	MHF
+ccall	max_fff
+popf	_T272
+subf	_T280, _T280, _T272
+divf	_T272, _T280, twidth
+pushf	_Df92
+pushf	_T272
+ccall	max_fff
+popf	_T280
+movf	_T272, _T280
+divf	_T280, MHF, twidth
+subf	_T288, _Df84, _T280
+pushf	_T288
+pushf	_Df92
+ccall	max_fff
+popf	_T280
+pushf	_T272
+pushf	_T280
+pushf	_Df84
+ccall	clamp_ffff
+popf	h
+_label3:
+movf	fact, _Df84
+movf	disp, _Df92
+ltf	tt, MHF
+jf	_label7
+divf	_T288, tt, MHF
+divf	_T272, tt, MHF
+mulf	_T280, _T288, _T272
+subf	_T288, _T280, _Df84
+mulf	disp, groovedepth, _T288
+jmp	_label6
+_label7:
+subf	_T272, _Df84, MHF
+gtf	tt, _T272
+jf	_label5
+subf	_T280, _Df84, tt
+divf	_T288, _T280, MHF
+subf	_T272, _Df84, tt
+divf	_T280, _T272, MHF
+mulf	_T272, _T288, _T280
+subf	_T288, _T272, _Df84
+mulf	disp, groovedepth, _T288
+_label5:
+_label6:
+ltf	ss, MWF
+jf	_label10
+mulf	_T280, _Df148, groovedepth
+divf	_T272, ss, MWF
+divf	_T288, ss, MWF
+mulf	_T272, _T272, _T288
+subf	_T288, _T272, _Df84
+mulf	_T272, _T280, _T288
+pushf	disp
+pushf	_T272
+ccall	min_fff
+popf	disp
+jmp	_label9
+_label10:
+subf	_T280, _Df84, MWF
+gtf	ss, _T280
+jf	_label8
+mulf	_T288, _Df148, groovedepth
+subf	_T272, _Df84, ss
+divf	_T280, _T272, MWF
+subf	_T272, _Df84, ss
+divf	_T272, _T272, MWF
+mulf	_T280, _T280, _T272
+subf	_T272, _T280, _Df84
+mulf	_T280, _T288, _T272
+pushf	disp
+pushf	_T280
+ccall	min_fff
+popf	disp
+_label8:
+_label9:
+mulf	_T288, _Df156, MHF
+pushf	_Df92
+pushf	_T288
+pushf	tt
+ccall	smoothstep_ffff
+popf	_T272
+mulf	_T280, _Df156, MHF
+subf	_T288, _Df84, _T280
+pushf	_T288
+pushf	_Df84
+pushf	tt
+ccall	smoothstep_ffff
+popf	_T280
+subf	fact, _T272, _T280
+mulf	_T288, _Df156, MWF
+pushf	_Df92
+pushf	_T288
+pushf	ss
+ccall	smoothstep_ffff
+popf	_T272
+mulf	_T280, _Df156, MWF
+subf	_T288, _Df84, _T280
+pushf	_T288
+pushf	_Df84
+pushf	ss
+ccall	smoothstep_ffff
+popf	_T280
+subf	_T288, _T272, _T280
+mulf	fact, fact, _T288
+mulf	_T272, _Df52, fact
+addf	_T280, _T272, _Df52
+mulf	fact, pitting, _T280
+addf	_T288, ss, sbrick
+mulf	_T272, _T288, pockfrequency
+divf	_T280, _T272, BMHEIGHT
+addf	_T288, tt, tbrick
+mulf	_T272, _T288, pockfrequency
+divf	_T288, _T272, BMWIDTH
+pushf	_T280
+pushf	_T288
+ccall	noise_fff
+popf	_T272
+pushf	_T272
+pushf	_Df164
+ccall	pow_fff
+popf	_T280
+mulf	_T288, fact, _T280
+subf	disp, disp, _T288
+pushv	N
+ccall	normalize_vv
+popv	_T296
+mulv	_T296, _T296, disp
+addv	P, P, _T296
+pushv	P
+ccall	calculatenormal_vp
+popv	N
+pushv	N
+ccall	normalize_vv
+popv	_T296
+pushv	_T296
+pushv	I
+ccall	faceforward_vvv
+popv	Nf
+addf	_T272, whichbrick, _Df52
+pushf	_T272
+ccall	noise_ff
+popf	_T280
+movf	_T288, _T280
+mulf	_T272, _Df108, _T280
+subf	_T288, _T272, _Df84
+mulf	_T272, brickvary, _T288
+addf	_T288, _Df84, _T272
+mulv	bcolor, brickcolor,	_T288
+mulf	_T272, w, h
+pushv	mortarcolor
+pushv	bcolor
+pushf	_T272
+ccall	mix_cccf
+popv	Ct
+movv	Oi, Os
+mulvv	_T320, Os, Ct
+ccall	ambient_c_
+popv	_T344
+mulv	_T344, _T344, Ka
+pushv	Nf
+ccall	diffuse_cv
+popv	_T368
+mulv	_T368, _T368, Kd
+addv	_T344, _T344, _T368
+mulvv	Ci, _T320, _T344
+subr	lstop, 392
+end

@@ -1,0 +1,184 @@
+version Giles 0.3
+surface marble
+param float layers 0
+param float startingFreq 0
+param float gain 0
+param float lacunarity 0
+param string noiseSpace "shader"
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+param color specularcolor 0 0 0
+param float scale 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+local float i 0
+local float mag 0
+local float freq 0
+local point PP 0 0 0
+pushif 4
+popf layers
+pushif 1
+popf startingFreq
+pushif 1
+popf gain
+pushif 1.9132
+popf lacunarity
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+pushif 0.04
+popf scale
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushif 0
+popf mag
+pushf startingFreq
+popf freq
+pushv P
+pushs noiseSpace
+ptransforms
+popv PP
+
+
+pushf scale
+pushv PP
+mulvf
+popv PP
+
+pushif 0
+popf i
+label 0
+pushf layers
+pushf i
+lt
+ifz 1
+
+
+
+pushf freq
+pushif 2
+pushif 0.5
+pushf freq
+pushv PP
+mulvf
+noisev
+subff
+abs
+mulff
+divff
+pushf mag
+addff
+popf mag
+
+pushf lacunarity
+pushf freq
+mulff
+popf freq
+
+pushif 1
+pushf i
+addff
+popf i
+jump 0
+
+label 1
+
+pushf mag
+pushif 0.4
+pushif 0
+smoothstep
+popf mag
+
+pushif 0.20
+pushif 0.10
+pushif 0.10
+pushif 0.20
+pushif 0.10
+pushif 0.10
+pushif 0.25
+pushif 0.35
+pushif 0.25
+pushif 0.10
+pushif 0.20
+pushif 0.10
+pushif 0.10
+pushif 0.20
+pushif 0.10
+pushif 0.10
+pushif 0.25
+pushif 0.15
+pushif 0.10
+pushif 0.25
+pushif 0.15
+pushif 0.35
+pushif 0.35
+pushif 0.25
+pushif 0.35
+pushif 0.35
+pushif 0.25
+pushif 0.20
+pushif 0.30
+pushif 0.20
+pushif 0.20
+pushif 0.30
+pushif 0.20
+pushif 0.20
+pushif 0.30
+pushif 0.20
+pushif 0.25
+pushif 0.35
+pushif 0.25
+pushif 0.25
+pushif 0.35
+pushif 0.25
+pushf mag
+pushif 13
+colorspline
+popc Ct
+
+pushc Os
+popc Oi
+
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf Ks
+pushc specularcolor
+mulcf
+mulcc
+pushv Nf
+diffuse
+pushf Kd
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Ct
+mulcc
+addcc
+pushc Oi
+mulcc
+popc Ci
+
+return

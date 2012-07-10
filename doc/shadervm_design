@@ -1,0 +1,167 @@
+Classes:
+	ShaderVm
+
+Class Details:
+
+class ShaderVm
+{
+	// public methods
+	color4d Trace(const ray &r);
+
+	int SetGlobEnv(const char *envname, void *val); // set global environment such as the ray depth
+
+private:
+	// private members
+	int32 *m_mem;
+	AcceStruct *m_accestruct;
+};
+
+color4d Trace(const ray &r)
+{
+	color4d returncolor = backgroundcolor;
+
+	if (intersect with AcceStruct) {
+		get the nearest intersect geometry	
+		set current shader = geometry.shader
+		load shader, create local environment
+		solve geometry, save normal and derivatives to local environment
+		evaluate interpolated values such u,v,s,t
+		run shader function(the shader function may recursively call Trace)
+		returncolor = local env(Co);
+	}
+
+	return returncolor;
+}
+
+
+---------------------------------------------
+enum {
+	SLE_Cs = 0,		// geom property
+	SLE_Os = 6,		// geom property
+	SLE_P = 12,		// geom eval
+	SLE_dPdu = 18,		// geom eval, NA
+	SLE_dPdv = 24,		// geom eval, NA
+	SLE_N = 30,		// geom eval
+	SLE_Ng = 36,		// geom eval
+	SLE_u = 42,		// geom eval
+	SLE_v = 44,		// geom eval
+	SLE_du = 46,		// geom eval, NA
+	SLE_dv = 48,		// geom eval, NA
+	SLE_s = 50,		// eval using s,t eval matrix
+	SLE_t = 52,		// eval using s,t eval matrix
+	SLE_L = 54,		// only inside illuminance
+	SLE_CI = 60,		// only inside illuminance
+	SLE_OI = 66,		// only inside illuminance
+	SLE_E = 72,		// convert eye place(notice that it is not always the ray) to shader space
+	SLE_I = 78,		// P-ray.orig
+	SLE_ncomps = 84,	// always 3, NA
+	SLE_time = 86,		// NA
+	SLE_dtime = 88,		// NA
+	SLE_dPdtime = 90,	// NA
+	SLE_Ci = 92,
+	SLE_Oi = 98,
+	SLE_SIZE = 104
+} SLE_ENV;
+
+enum {
+	LLE_P = 0,		// 
+	LLE_dPdu = 6,
+	LLE_dPdv = 12,
+	LLE_N = 18,
+	LLE_Ng = 24,
+	LLE_u = 30,
+	LLE_v = 32,
+	LLE_du = 34,
+	LLE_dv = 36,
+	LLE_s = 38,
+	LLE_t = 40,
+	LLE_L = 42,		// in solar or illuminate statement only
+	LLE_Ps = 48,		// illuminance statement
+	LLE_E = 54,
+	LLE_ncomps = 60,	// NA
+	LLE_time = 62,		// NA
+	LLE_dtime = 64,		// NA
+	LLE_Cl = 66,
+	LLE_Ol = 72,
+	LLE_SIZE = 78
+} LLE_ENV;
+
+-----------
+ILLUMINANCE
+Renderman has two kinds of <illuminance> statements as follows
+
+illuminance([string category], point position)
+	statements
+
+illuminance([string category], point position, vector axis, float angle)
+	statements
+
+so we have 4 version:
+illuminance0(point position);
+illuminance1(string category, point position);
+illuminance2(point position, vector axis, float angle);
+illuminance3(string category, point position vector axis, float angle);
+
+The pseudocode for illuminance is 
+illuminance()
+{
+	for each light {
+		convert position to light local space;
+		evaluate the light and set light local environment;
+		pushcontext;
+		execute light shader;
+		save result Cl, Ol, L to some place;
+		popcontext;
+		
+		convert L to surface shader local space;
+		write Cl, Ol, L to shader local environment;
+		
+		exec the shader arguments in illuminance
+	}
+}
+
+To simplify the process, we use a simple version of illuminance that we will not execute shader code in illuminance,
+instead, we implement 5 internel functions
+color3d ambient();
+color3d diffuse(vector3d N);
+color3d specular(vector3d N, vector3d V, double roughness);
+color3d specularbrdf(vector3d L, vector3d N, vector3d V, double roughness);
+color3d phong(vector3d N, vector3d V, double size);
+
+
+
+-------------------------------------------------------
+SPACE CONVERSION
+
+There are three kinds of point coordinate system in Renderman, they are
+"shader",
+"current",
+named coordinate system
+"raster",
+"NDC",
+"screen",
+"camera",
+"world",
+"object"
+
+In rayer, we use "camera" as "current" coordinate, so we have 7 system coordinate systems, they are:
+"raster",
+"NDC",
+"screen",
+"camera", "current"
+"world",
+"object",
+"shader",
+and some named coordinate system.
+These coordinate systems are maintained in ShaderVm as an array of matrix4d. 
+
+In shader, we need to be able to convert a point from any coordinate system to another
+
+---------------------------
+Ri design
+Ri:
+	Attribute stack
+	Transform stack
+	
+	ShaderInst dictionary
+	

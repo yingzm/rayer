@@ -1,0 +1,182 @@
+version Giles 0.3
+surface simplecheck
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+param color specularcolor 0 0 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+local float repeatCount 0
+local float ss 0
+local float tt 0
+local float filterWidthSS 0
+local float filterWidthTT 0
+local float smag 0
+local float tmag 0
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushif 40
+popf repeatCount
+pushf t
+pushf repeatCount
+pushf s
+mulff
+addff
+popf ss
+pushf s
+pushf repeatCount
+pushf t
+mulff
+subff
+popf tt
+pushf dv
+pushf ss
+Dvf
+mulff
+abs
+pushf du
+pushf ss
+Duf
+mulff
+abs
+addff
+popf filterWidthSS
+pushf dv
+pushf tt
+Dvf
+mulff
+abs
+pushf du
+pushf tt
+Duf
+mulff
+abs
+addff
+popf filterWidthTT
+
+
+pushif 2
+pushf ss
+mod
+popf ss
+
+pushif 2
+pushf tt
+mod
+popf tt
+
+pushf ss
+pushf filterWidthSS
+pushif 0.5
+addff
+pushf filterWidthSS
+pushif 0.5
+subff
+smoothstep
+popf smag
+
+pushf ss
+pushf filterWidthSS
+pushif 1.5
+addff
+pushf filterWidthSS
+pushif 1.5
+subff
+smoothstep
+pushf smag
+subff
+popf smag
+
+pushif 1
+pushif 2
+pushf smag
+mulff
+subff
+popf smag
+
+pushf tt
+pushf filterWidthTT
+pushif 0.5
+addff
+pushf filterWidthTT
+pushif 0.5
+subff
+smoothstep
+popf tmag
+
+pushf tt
+pushf filterWidthTT
+pushif 1.5
+addff
+pushf filterWidthTT
+pushif 1.5
+subff
+smoothstep
+pushf tmag
+subff
+popf tmag
+
+pushif 1
+pushif 2
+pushf tmag
+mulff
+subff
+popf tmag
+
+pushif 0.5
+pushif 2
+pushf tmag
+pushf smag
+mulff
+divff
+addff
+cset Ct
+
+pushc Os
+popc Oi
+
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf Ks
+pushc specularcolor
+mulcf
+mulcc
+pushv Nf
+diffuse
+pushf Kd
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Ct
+mulcc
+addcc
+pushc Oi
+mulcc
+popc Ci
+
+return

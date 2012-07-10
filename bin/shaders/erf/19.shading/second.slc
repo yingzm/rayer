@@ -1,0 +1,21 @@
+version Giles 0.3
+surface second
+local normal Nf 0 0 0
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+
+pushc Os
+popc Oi
+
+pushc Oi
+pushv Nf
+diffuse
+pushc Cs
+mulcc
+mulcc
+popc Ci
+
+return

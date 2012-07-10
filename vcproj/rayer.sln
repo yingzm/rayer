@@ -1,0 +1,45 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "base3d", "base3d\base3d.vcproj", "{C9FC51EC-6D60-44C1-AD8F-C6C4C0E6B351}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "geom", "geom\geom.vcproj", "{5E327E9D-16A9-4632-94A0-9BCF74703CD9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rayer", "rayer\rayer.vcproj", "{4D04B46C-DDC2-481A-B6D2-D75A74008900}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shadervm", "shadervm\shadervm.vcproj", "{1A372578-6DB5-479D-8168-152D0C7013D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+		{5E327E9D-16A9-4632-94A0-9BCF74703CD9}.0 = {C9FC51EC-6D60-44C1-AD8F-C6C4C0E6B351}
+		{4D04B46C-DDC2-481A-B6D2-D75A74008900}.0 = {C9FC51EC-6D60-44C1-AD8F-C6C4C0E6B351}
+		{4D04B46C-DDC2-481A-B6D2-D75A74008900}.1 = {5E327E9D-16A9-4632-94A0-9BCF74703CD9}
+		{4D04B46C-DDC2-481A-B6D2-D75A74008900}.2 = {1A372578-6DB5-479D-8168-152D0C7013D7}
+		{1A372578-6DB5-479D-8168-152D0C7013D7}.0 = {5E327E9D-16A9-4632-94A0-9BCF74703CD9}
+		{1A372578-6DB5-479D-8168-152D0C7013D7}.1 = {C9FC51EC-6D60-44C1-AD8F-C6C4C0E6B351}
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{C9FC51EC-6D60-44C1-AD8F-C6C4C0E6B351}.Debug.ActiveCfg = Debug|Win32
+		{C9FC51EC-6D60-44C1-AD8F-C6C4C0E6B351}.Debug.Build.0 = Debug|Win32
+		{C9FC51EC-6D60-44C1-AD8F-C6C4C0E6B351}.Release.ActiveCfg = Release|Win32
+		{C9FC51EC-6D60-44C1-AD8F-C6C4C0E6B351}.Release.Build.0 = Release|Win32
+		{5E327E9D-16A9-4632-94A0-9BCF74703CD9}.Debug.ActiveCfg = Debug|Win32
+		{5E327E9D-16A9-4632-94A0-9BCF74703CD9}.Debug.Build.0 = Debug|Win32
+		{5E327E9D-16A9-4632-94A0-9BCF74703CD9}.Release.ActiveCfg = Release|Win32
+		{5E327E9D-16A9-4632-94A0-9BCF74703CD9}.Release.Build.0 = Release|Win32
+		{4D04B46C-DDC2-481A-B6D2-D75A74008900}.Debug.ActiveCfg = Debug|Win32
+		{4D04B46C-DDC2-481A-B6D2-D75A74008900}.Debug.Build.0 = Debug|Win32
+		{4D04B46C-DDC2-481A-B6D2-D75A74008900}.Release.ActiveCfg = Release|Win32
+		{4D04B46C-DDC2-481A-B6D2-D75A74008900}.Release.Build.0 = Release|Win32
+		{1A372578-6DB5-479D-8168-152D0C7013D7}.Debug.ActiveCfg = Debug|Win32
+		{1A372578-6DB5-479D-8168-152D0C7013D7}.Debug.Build.0 = Debug|Win32
+		{1A372578-6DB5-479D-8168-152D0C7013D7}.Release.ActiveCfg = Release|Win32
+		{1A372578-6DB5-479D-8168-152D0C7013D7}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

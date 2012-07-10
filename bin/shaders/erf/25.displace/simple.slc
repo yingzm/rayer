@@ -1,0 +1,48 @@
+version Giles 0.1
+displacement simple
+param float Km 0
+local normal NN 0 0 0
+local float mag 0
+pushif 0.1
+popf Km
+return
+
+pushv N
+normalize
+popv NN
+pushif 0
+popf mag
+
+pushif 3.141593
+pushif 2
+pushif 10
+pushf t
+mulff
+mulff
+mulff
+sin
+pushif 3.141593
+pushif 2
+pushif 10
+pushf s
+mulff
+mulff
+mulff
+sin
+mulff
+popf mag
+
+pushv NN
+pushf Km
+pushf mag
+mulff
+mulfv
+pushv P
+addvv
+popv P
+
+pushv P
+calculatenormal
+popv N
+
+return

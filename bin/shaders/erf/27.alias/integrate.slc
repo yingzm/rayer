@@ -1,0 +1,129 @@
+version Giles 0.3
+surface integrate
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+param color specularcolor 0 0 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+local float filterWidth 0
+local float val 0
+local float scale 0
+local float ss 0
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushif 2
+pushif 1
+pushif 4
+pushf t
+mulff
+floor
+addff
+pushif 10
+pow
+mulff
+popf scale
+pushf scale
+pushf s
+mulff
+popf ss
+
+
+pushf dv
+pushf ss
+Dvf
+mulff
+abs
+pushf du
+pushf ss
+Duf
+mulff
+abs
+addff
+popf filterWidth
+
+pushif 0.5
+pushf s
+gt
+ifz 0
+
+
+
+pushf ss
+cos
+popf val
+
+jump 1
+
+label 0
+
+
+pushf filterWidth
+pushf ss
+sin
+pushf filterWidth
+pushf ss
+addff
+sin
+subff
+divff
+popf val
+
+
+label 1
+
+pushif 0.5
+pushif 0.5
+pushf val
+mulff
+addff
+cset Ct
+
+pushc Os
+popc Oi
+
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf Ks
+pushc specularcolor
+mulcf
+mulcc
+pushv Nf
+diffuse
+pushf Kd
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Ct
+mulcc
+addcc
+pushc Oi
+mulcc
+popc Ci
+
+return

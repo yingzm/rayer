@@ -1,0 +1,5 @@
+Four modules:
+	rayer:	Main module, used to parse rib file, generate rays, output tiff file
+	shadervm:	Rendering module
+	geom:	Geometry module, get ray intersection and calculate normal and derivatives.
+	base3d: Basic 3d utilities.

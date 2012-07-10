@@ -1,0 +1,17 @@
+Display "exposure.tiff" "file" "rgb"
+
+Clipping 5 15
+PixelSamples 2 2
+#Exposure 1.0 2.2
+
+#for print version we need it a gamma of two
+#Thats: 2x2.2=4.4
+Exposure 1.0 4.4
+
+Projection "perspective" "fov" [ 25 ]
+
+Translate 0 0 10
+
+WorldBegin
+	Sphere 2 -2 2 360
+WorldEnd

@@ -1,0 +1,113 @@
+version Giles 0.3
+surface fclamp
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+param color specularcolor 0 0 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+local float filterWidth 0
+local float val 0
+local float scale 0
+local float ss 0
+local float fade 0
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushif 1
+pushif 4
+pushf t
+mulff
+floor
+addff
+pushif 4.5
+pow
+popf scale
+pushf scale
+pushf s
+mulff
+popf ss
+
+
+pushf dv
+pushf ss
+Dvf
+mulff
+abs
+pushf du
+pushf ss
+Duf
+mulff
+abs
+addff
+popf filterWidth
+
+pushif 0.5
+pushf s
+gt
+ifz 0
+
+
+
+pushf ss
+noisef
+popf val
+
+jump 1
+
+label 0
+
+
+pushf filterWidth
+pushif 0.6
+pushif 0.2
+smoothstep
+popf fade
+
+pushif 0.5
+pushf fade
+mulff
+pushf ss
+noisef
+pushf fade
+pushif 1
+subff
+mulff
+addff
+popf val
+
+
+label 1
+
+pushf val
+cset Ct
+
+pushc Os
+popc Oi
+
+pushc Ct
+pushc Oi
+mulcc
+popc Ci
+
+return

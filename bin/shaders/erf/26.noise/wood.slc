@@ -1,0 +1,117 @@
+version Giles 0.3
+surface wood
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+param color specularcolor 0 0 0
+param float scale 0
+local color lightWood 0 0 0
+local color darkWood 0 0 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+local point PP 0 0 0
+local float l 0
+local string $_str_13 "shader"
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+pushif 0.06
+popf scale
+return
+
+pushif 0.5
+pushif 0.6
+pushif 1
+popc lightWood
+pushif 0.2
+pushif 0.2
+pushif 0.3
+popc darkWood
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+
+
+pushf scale
+pushv P
+pushs $_str_13
+ptransforms
+mulvf
+popv PP
+
+pushif 0.1
+pushif 10
+pushv PP
+mulvf
+pointnoisev
+mulvf
+pushv PP
+addvv
+popv PP
+
+pushv PP
+ycomp
+pushv PP
+ycomp
+mulff
+pushv PP
+xcomp
+pushv PP
+xcomp
+mulff
+addff
+sqrt
+popf l
+
+pushif 1
+pushif 8
+pushf l
+mulff
+mod
+pushc lightWood
+pushc darkWood
+cmix
+popc Ct
+
+pushc Os
+popc Oi
+
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf Ks
+pushc specularcolor
+mulcf
+mulcc
+pushv Nf
+diffuse
+pushf Kd
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Ct
+mulcc
+addcc
+pushc Oi
+mulcc
+popc Ci
+
+return

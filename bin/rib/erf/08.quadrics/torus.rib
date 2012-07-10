@@ -1,0 +1,10 @@
+#torus.rib
+Display "torus.tiff" "file" "rgb"
+Projection "perspective"
+WorldBegin
+	Rotate -90 1 0 0
+	Translate 0 -6 0
+	Rotate -60 1 0 0
+	Rotate 140 0 0 1
+	Torus 3 0.5 0 360 270
+WorldEnd

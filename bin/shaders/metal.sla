@@ -1,0 +1,40 @@
+.info
+surface	metal
+
+.params
+float	Ka	1
+float	Ks	1
+float	roughness	0.1
+.code
+addr	lstop, 120
+declare	normal	Nf	[0]
+declare	vector	_T24	[24]
+declare	vector	V	[48]
+declare	color	_T72	[72]
+declare	color	_T96	[96]
+pushv	N
+ccall	normalize_vv
+popv	_T24
+pushv	_T24
+pushv	I
+ccall	faceforward_vvv
+popv	Nf
+pushv	I
+ccall	normalize_vv
+popv	_T24
+negv	V
+ccall	ambient_c_
+popv	_T72
+mulv	_T72, _T72, Ka
+pushv	Nf
+pushv	V
+pushf	roughness
+ccall	specular_cvvf
+popv	_T96
+mulv	_T96, _T96, Ks
+addv	_T72, _T72, _T96
+mulvv	Ci, Cs, _T72
+movv	Oi, Os
+mulvv	Ci, Ci, Oi
+subr	lstop, 120
+end

@@ -1,0 +1,225 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.0'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      4792,        153]*)
+(*NotebookOutlinePosition[      5435,        175]*)
+(*  CellTagsIndexPosition[      5391,        171]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+    \(y\  = \ \((x0 + t*dx)\)\^2 + \((y0 + t*dy)\)\^2 - 
+        r*r*\((1 - \(z0 + t*dz\)\/h)\)\^2\)], "Input"],
+
+Cell[BoxData[
+    \(\((dx\ t + x0)\)\^2 + \((dy\ t + y0)\)\^2 - 
+      r\^2\ \((1 - \(dz\ t + z0\)\/h)\)\^2\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(expand \((y)\)\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{\(General::"spell1"\), \(\(:\)\(\ \)\), "\<\"Possible spelling \
+error: new symbol name \\\"\\!\\(expand\\)\\\" is similar to existing symbol \
+\\\"\\!\\(Expand\\)\\\". \\!\\(\\*ButtonBox[\\\"More\[Ellipsis]\\\", \
+ButtonStyle->\\\"RefGuideLinkText\\\", ButtonFrame->None, \
+ButtonData:>\\\"General::spell1\\\"]\\)\"\>"}]], "Message"],
+
+Cell[BoxData[
+    \(expand\ \((\((dx\ t + x0)\)\^2 + \((dy\ t + y0)\)\^2 - 
+          r\^2\ \((1 - \(dz\ t + z0\)\/h)\)\^2)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(decompose \((y, \ x)\)\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{\(General::"spell1"\), \(\(:\)\(\ \)\), "\<\"Possible spelling \
+error: new symbol name \\\"\\!\\(decompose\\)\\\" is similar to existing \
+symbol \\\"\\!\\(Decompose\\)\\\". \
+\\!\\(\\*ButtonBox[\\\"More\[Ellipsis]\\\", ButtonStyle->\\\"RefGuideLinkText\
+\\\", ButtonFrame->None, ButtonData:>\\\"General::spell1\\\"]\\)\"\>"}]], \
+"Message"],
+
+Cell[BoxData[
+    RowBox[{\(Syntax::"sntxf"\), \(\(:\)\(\ \)\), "\<\"\\\"\\!\\((\\)\\\" \
+cannot be followed by \\\"\\!\\(y, x)\\)\\\".\\!\\(\\\"\\\"\\) \
+\\!\\(\\*ButtonBox[\\\"More\[Ellipsis]\\\", ButtonStyle->\\\"RefGuideLinkText\
+\\\", ButtonFrame->None, ButtonData:>\\\"General::sntxf\\\"]\\)\"\>"}]], \
+"Message"],
+
+Cell[BoxData[
+    StyleBox[
+      RowBox[{"decompose", 
+        RowBox[{"(", 
+          ErrorBox[\(y, x\)], ")"}]}],
+      ShowStringCharacters->True]], "Message"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(decompose[y, \ x]\)], "Input"],
+
+Cell[BoxData[
+    \(decompose[\((dx\ t + x0)\)\^2 + \((dy\ t + y0)\)\^2 - 
+        r\^2\ \((1 - \(dz\ t + z0\)\/h)\)\^2, x]\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(decompose[y, \ t]\)], "Input"],
+
+Cell[BoxData[
+    \(decompose[\((dx\ t + x0)\)\^2 + \((dy\ t + y0)\)\^2 - 
+        r\^2\ \((1 - \(dz\ t + z0\)\/h)\)\^2, t]\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(decompose[\ \((x0 + t*dx)\)\^2 + \((y0 + t*dy)\)\^2 - 
+        r*r*\((1 - \(z0 + t*dz\)\/h)\)\^2, \ t]\)], "Input"],
+
+Cell[BoxData[
+    \(decompose[\((dx\ t + x0)\)\^2 + \((dy\ t + y0)\)\^2 - 
+        r\^2\ \((1 - \(dz\ t + z0\)\/h)\)\^2, t]\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(CoefficientList[\ \((x0 + t*dx)\)\^2 + \((y0 + t*dy)\)\^2 - 
+        r*r*\((1 - \(z0 + t*dz\)\/h)\)\^2, \ t]\)], "Input"],
+
+Cell[BoxData[
+    \({\(-r\^2\) + x0\^2 + 
+        y0\^2 + \(2\ r\^2\ z0\)\/h - \(r\^2\ z0\^2\)\/h\^2, \(2\ dz\ \
+r\^2\)\/h + 2\ dx\ x0 + 2\ dy\ y0 - \(2\ dz\ r\^2\ z0\)\/h\^2, 
+      dx\^2 + dy\^2 - \(dz\^2\ r\^2\)\/h\^2}\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input"]
+},
+FrontEndVersion->"5.0 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 695}},
+WindowSize->{496, 537},
+WindowMargins->{{0, Automatic}, {Automatic, 0}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 125, 2, 43, "Input"],
+Cell[1904, 57, 121, 2, 43, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2062, 64, 47, 1, 30, "Input"],
+Cell[2112, 67, 360, 5, 52, "Message"],
+Cell[2475, 74, 139, 2, 43, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2651, 81, 55, 1, 30, "Input"],
+Cell[2709, 84, 368, 6, 52, "Message"],
+Cell[3080, 92, 319, 5, 22, "Message"],
+Cell[3402, 99, 163, 5, 25, "Message"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3602, 109, 50, 1, 30, "Input"],
+Cell[3655, 112, 137, 2, 43, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3829, 119, 50, 1, 30, "Input"],
+Cell[3882, 122, 137, 2, 43, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4056, 129, 135, 2, 65, "Input"],
+Cell[4194, 133, 137, 2, 43, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4368, 140, 141, 2, 87, "Input"],
+Cell[4512, 144, 235, 4, 82, "Output"]
+}, Open  ]],
+Cell[4762, 151, 26, 0, 30, "Input"]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

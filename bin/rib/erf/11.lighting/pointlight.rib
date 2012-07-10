@@ -1,0 +1,15 @@
+#pointlight.rib
+Display "pointlight.tiff" "file" "rgb"
+Format 640 480 1.0
+
+Projection "perspective" "fov" [ 30 ]
+
+Translate 0 0 5
+
+WorldBegin
+	LightSource "pointlight" 1 "from" [ -2 2 -2 ] "intensity" [ 7 ]
+
+	Surface "plastic"
+	Color [ 1 0 0 ]
+	Sphere 1 -1 1 360
+WorldEnd

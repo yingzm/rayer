@@ -1,0 +1,28 @@
+#withshadow.rib
+Display "withshadow.tiff" "file" "rgb"
+Projection "perspective" "fov" [ 30 ]
+
+Translate 0 0 5
+
+WorldBegin
+        LightSource "ambientlight" 1 "intensity" [ 0.1]
+        LightSource "shadowspot" 2
+		"shadowname" [ "map.shad" ]
+                "from" [ 0 4 0 ]
+                "to" [ 0 0 0 ]
+                "intensity" [ 7 ]
+                "coneangle" [0.3]
+                "conedeltaangle" [0.05]
+
+
+	Color [ 1 0 0 ]
+	Surface "plastic"
+	Sphere 1 -1 1 360
+
+	Color [ 0 1 0 ]
+	Patch "bilinear" "P" [ -5 -1 -5
+			       5 -1 -5
+			      -5 -1 5
+			       5 -1 5 ]
+
+WorldEnd

@@ -1,0 +1,23 @@
+.info
+surface	screen
+
+.params
+float	Ka	1
+float	Kd	0.75
+float	Ks	0.4
+float	roughness	0.1
+color	specularcolor	[1 1 1]
+float	density	0.25
+float	frequency	20
+.data
+float	_Df0	1
+vector	_Dv8	[1 1 1]
+vector	_Dv32	[0 0 0]
+.code
+addr	lstop, 128
+declare	float	_T0	[0]
+declare	normal	Nf	[8]
+declare	vector	_T32	[32]
+declare	color	_T56	[56]
+declare	color	_T80	[80]
+declare	color	_T104	[104]

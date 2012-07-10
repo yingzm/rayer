@@ -1,0 +1,27 @@
+Display "shading.tiff" "file" "rgb"
+Projection "perspective" "fov" [30]
+WorldBegin
+
+Translate 0 0 6
+
+#This turns off Gourad shading.
+#Normally it has little effect but it makes this
+#demo more convincing
+ShadingInterpolation "constant"
+
+ShadingRate 1
+Translate -1.5 0 0
+Sphere 0.5 -0.5 0.5 360
+
+ShadingRate 2
+Translate 1 0 0
+Sphere 0.5 -0.5 0.5 360
+
+ShadingRate 4
+Translate 1 0 0
+Sphere 0.5 -0.5 0.5 360
+
+ShadingRate 8
+Translate 1 0 0
+Sphere 0.5 -0.5 0.5 360
+WorldEnd

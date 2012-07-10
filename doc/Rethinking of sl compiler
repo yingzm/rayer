@@ -1,0 +1,67 @@
+1. The shading language compiler can acomplish some task such as simple assembly code generation for those shaders that
+	* do not have user functions
+	* do not have arrays
+	* do not have typecast in code
+	
+2. Some coding issues of compilers:
+	* Most of the non-terminators in bison are pointer to Node, or pointer to vector<Node *>. Its advantage is that it provides a uniform representation of the nodes, while it need all the nodes have Node * in their constructors to avoid type casting. Further more, it is not a precise representation of the type, in a literal sense.
+
+3. Design defects
+	* ExprNode is a very important type of node, but its interface is not clearly defined.
+	* Variable definition has two way of interpreting in different context. As a parameter, it need the initial expression to be constant. And, parameter type cast can be ignored or can't depends on the context. For a parameter definition as following
+		color Ka = 1;
+	we need to convert 1 into [1 1 1] and save the constant to data segment. While for such a definition:
+		point from = point "shader" [0 0 1]
+	we need addition code 
+		from = transform("shader", from);
+	before the shader body runs.
+	* Type system is not clear. Normally, the overload function can be determined by only types of arguments. However, the "texture" function also need return type to 
+	* Mangling name: parameter list is not considered.
+	* Function calling mechanism is not considered.
+	* error reporting 
+	* including c pre-processor
+	
+	
+4. Improvements of sl compiler
+
+4.1 Features:
+	* types: float, point, normal, vector, color, matrix, string and arrays of above types
+	* string operation: only assign and compare operations are supported.
+	* function calls: all functions are inline function
+	* all array accesses are statically resolved, that is, the index in the array must be constant integer.
+	
+4.2 type system
+	class Type
+	{
+	public:
+		/* routine type check */
+		Sbool IsFloat() const;
+		Sbool IsPoint() const;
+		Sbool IsNormal() const;
+		Sbool IsVector() const;
+		Sbool IsColor() const;
+		Sbool IsMatrix() const;
+		Sbool IsString() const;
+		Sbool IsArray() const;
+
+		/**
+		 * if the type is a triple type, such as point, normal, ...
+		 * A constant triple (a, b, c) can be interpreted to any of
+		 * the types
+		 */		
+		Sbool IsTriple() const;
+		
+		/**
+		 * Error
+		Sbool IsError() const
+		Sbool IsUnknown() const;
+		Sbool IsVoid() const;
+	};
+	
+4.3 ExprNode
+	class ExprNode
+	{
+	public:
+		
+		void AllocSelfSymbol();
+	};

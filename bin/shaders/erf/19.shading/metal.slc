@@ -1,0 +1,45 @@
+version Giles 0.3
+surface metal
+param float Ka 0
+param float Ks 0
+param float roughness 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+pushif 1
+popf Ka
+pushif 1
+popf Ks
+pushif .1
+popf roughness
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+
+pushc Os
+popc Oi
+
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf Ks
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Cs
+pushc Os
+mulcc
+mulcc
+popc Ci
+
+return

@@ -1,0 +1,93 @@
+version Giles 0.3
+surface tile
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+param color specularcolor 0 0 0
+param float repeatCount 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+local float ss 0
+local float tt 0
+local float sTile 0
+local float tTile 0
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+pushif 100
+popf repeatCount
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushf t
+pushf repeatCount
+pushf s
+mulff
+addff
+popf ss
+pushf s
+pushf repeatCount
+pushf t
+mulff
+subff
+popf tt
+pushf ss
+floor
+popf sTile
+pushf tt
+floor
+popf tTile
+
+
+pushif 2
+pushf tTile
+pushf sTile
+addff
+mod
+cset Ct
+
+
+pushc Os
+popc Oi
+
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf Ks
+pushc specularcolor
+mulcf
+mulcc
+pushv Nf
+diffuse
+pushf Kd
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Ct
+mulcc
+addcc
+pushc Oi
+mulcc
+popc Ci
+
+return

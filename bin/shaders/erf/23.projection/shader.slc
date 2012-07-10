@@ -1,0 +1,86 @@
+version Giles 0.3
+surface shader
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+param color specularcolor 0 0 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+local string $_str_8 "shader"
+local point PP 0 0 0
+local float repeatCount 0
+local float ss 0
+local float tt 0
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushv P
+pushs $_str_8
+ptransforms
+popv PP
+pushif 5
+popf repeatCount
+pushf repeatCount
+pushv PP
+xcomp
+mulff
+popf ss
+pushf repeatCount
+pushv PP
+ycomp
+mulff
+popf tt
+
+pushf tt
+pushf ss
+colorcellnoiseff
+popc Ct
+
+
+pushc Os
+popc Oi
+
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf Ks
+pushc specularcolor
+mulcf
+mulcc
+pushv Nf
+diffuse
+pushf Kd
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Ct
+mulcc
+addcc
+pushc Oi
+mulcc
+popc Ci
+
+return

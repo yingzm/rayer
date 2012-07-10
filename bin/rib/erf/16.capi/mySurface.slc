@@ -1,0 +1,35 @@
+version Giles 0.1
+surface mySurface
+param color customColor 0 0 0
+local color Ct 0 0 0
+local normal Nf 0 0 0
+pushif 0
+pushif 1
+pushif 0
+popc customColor
+return
+
+pushv I
+pushv N
+faceforward
+normalize
+popv Nf
+
+pushf s
+pushc Cs
+pushc customColor
+cmix
+popc Ct
+
+pushc Os
+popc Oi
+
+pushc Oi
+pushc Ct
+pushv Nf
+diffuse
+mulcc
+mulcc
+popc Ci
+
+return

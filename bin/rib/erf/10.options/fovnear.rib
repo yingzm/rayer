@@ -1,0 +1,17 @@
+Display "fovnear.tiff" "file" "rgb"
+
+Projection "perspective" "fov" [ 90 ]
+WorldBegin
+
+	Translate 0 0 2
+	
+	TransformBegin
+		Translate -1 0 0
+		Sphere 1 -1 1 360
+	TransformEnd
+	
+	TransformBegin
+		Translate 1 0 0
+		Sphere 1 -1 1 360
+	TransformEnd
+WorldEnd

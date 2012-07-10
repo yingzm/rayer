@@ -1,0 +1,26 @@
+Display "06.tiff" "file" "rgba"
+Projection "perspective" "fov" 40
+Format 400 300 1
+
+WorldBegin
+	Translate 0 0 7
+	Rotate -110 1 0 0
+	Rotate 25 0 0 1
+	
+	#insert the upright red cylinder
+	Scale .5 1 1
+	Color 1 0 0
+	Cylinder 0.5 -2 2 360
+	
+	#insert the green second cylinder
+	Rotate 90 1 0 0
+	Scale .5 1 1
+	Color 0 1 0
+	Cylinder 0.5 -2 2 360
+	
+	#insert the blue third cylinder
+	Rotate 90 0 1 0
+	Scale .5 1 1
+	Color 0 0 1
+	Cylinder 0.5 -2 2 360
+WorldEnd

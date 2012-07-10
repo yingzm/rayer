@@ -1,0 +1,130 @@
+version Giles 0.3
+surface repeat
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+param color specularcolor 0 0 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+local color red 0 0 0
+local color green 0 0 0
+local color blue 0 0 0
+local float fuzz 0
+local float dist 0
+local float inDisk 0
+local float ss 0
+local float tt 0
+local point centre 0 0 0
+local point here 0 0 0
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushif 0
+pushif 0
+pushif 1
+popc red
+pushif 0
+pushif 1
+pushif 0
+popc green
+pushif 1
+pushif 0
+pushif 0
+popc blue
+pushif 0.025
+popf fuzz
+pushif 1
+pushif 5
+pushf s
+mulff
+mod
+popf ss
+pushif 1
+pushif 5
+pushf t
+mulff
+mod
+popf tt
+pushif 0
+pushif 0.5
+pushif 0.5
+popv centre
+pushif 0
+pushf tt
+pushf ss
+popv here
+
+
+pushc Cs
+popc Ct
+
+pushv here
+pushv centre
+distance
+popf dist
+
+pushf dist
+pushf fuzz
+pushif 0.3
+addff
+pushf fuzz
+pushif 0.3
+subff
+smoothstep
+pushif 1
+subff
+popf inDisk
+
+pushf inDisk
+pushc blue
+pushc Ct
+cmix
+popc Ct
+
+pushc Os
+popc Oi
+
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf Ks
+pushc specularcolor
+mulcf
+mulcc
+pushv Nf
+diffuse
+pushf Kd
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Ct
+mulcc
+addcc
+pushc Oi
+mulcc
+popc Ci
+
+return

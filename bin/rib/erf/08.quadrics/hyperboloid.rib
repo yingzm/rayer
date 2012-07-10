@@ -1,0 +1,9 @@
+#hyperboloid.rib
+Display "hyperboloid.tiff" "file" "rgb"
+Projection "perspective"
+WorldBegin
+	Translate 0 0 6
+	Rotate -90 1 0 0
+
+	Hyperboloid 2 -2 -2 2 2 2 360
+WorldEnd

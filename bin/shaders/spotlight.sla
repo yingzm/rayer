@@ -1,0 +1,70 @@
+.info
+light	spotlight
+
+.params
+float	intensity	1
+color	lightcolor	[1 1 1]
+point	from	[0 0 0]
+point	to	[0 0 1]
+float	coneangle	0.523599
+float	conedeltaangle	0.0872665
+float	beamdistribution	2
+.data
+string	_Dv0	"shader"
+string	_Dv8	"current"
+.code
+addr	lstop, 80
+pushs	_Dv0
+pushs	_Dv8
+pushv	from
+ccall transform_pssp
+popv	from
+pushs	_Dv0
+pushs	_Dv8
+pushv	to
+ccall transform_pssp
+popv	to
+declare	vector	axis	[0]
+declare	vector	_T24	[24]
+declare	float	cosangle	[48]
+declare	float	_T56	[56]
+declare	float	_T64	[64]
+declare	float	atten	[72]
+subv	_T24, to, from
+pushv	_T24
+ccall	normalize_vv
+popv	axis
+pushv	from
+pushv	axis
+pushf	coneangle
+ccall	illuminate__pvf
+jf	_label0
+dotv	_T56, L, axis
+pushv	L
+ccall	length_fv
+popf	_T64
+divf	cosangle, _T56, _T64
+pushf	cosangle
+pushf	beamdistribution
+ccall	pow_fff
+popf	_T56
+dotv	_T64, L, L
+divf	atten, _T56, _T64
+pushf	coneangle
+ccall	cos_ff
+popf	_T56
+subf	_T64, coneangle, conedeltaangle
+pushf	_T64
+ccall	cos_ff
+popf	_T64
+pushf	_T56
+pushf	_T64
+pushf	cosangle
+ccall	smoothstep_ffff
+popf	_T56
+mulf	atten, atten, _T56
+mulf	_T64, atten, intensity
+mulv	Cl, lightcolor, _T64
+_label0:
+subr	lstop, 80
+end

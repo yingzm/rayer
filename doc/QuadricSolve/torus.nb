@@ -1,0 +1,133 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.0'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      3534,         90]*)
+(*NotebookOutlinePosition[      4179,        112]*)
+(*  CellTagsIndexPosition[      4135,        108]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+    \(\((\@\(x\^2 + y\^2\) - R)\)\^2 + z\^2 \[Equal] r\^2\)], "Input"],
+
+Cell[BoxData[
+    \(\((\(-R\) + \@\(\((dx\ t + x0)\)\^2 + \((dy\ t + y0)\)\^2\))\)\^2 + \
+\((dz\ t + z0)\)\^2 \[Equal] minorradius\^2 - \((dz\ t + z0)\)\^2\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(CoefficientList[
+      4*\((\((x0 + t*dx)\)\^2 + \((y0 + t*dy)\)\^2)\)*
+          R\^2 - \((R\^2 + \((z0 + t*dz)\)\^2 + \((x0 + t*dx)\)\^2 + \((y0 + \
+t*dy)\)\^2 - r\^2)\)\^2, \ t]\)], "Input"],
+
+Cell[BoxData[
+    \({\(-r\^4\) + 2\ r\^2\ R\^2 - R\^4 + 2\ r\^2\ x0\^2 + 2\ R\^2\ x0\^2 - 
+        x0\^4 + 2\ r\^2\ y0\^2 + 2\ R\^2\ y0\^2 - 2\ x0\^2\ y0\^2 - y0\^4 + 
+        2\ r\^2\ z0\^2 - 2\ R\^2\ z0\^2 - 2\ x0\^2\ z0\^2 - 2\ y0\^2\ z0\^2 - 
+        z0\^4, 4\ dx\ r\^2\ x0 + 4\ dx\ R\^2\ x0 - 4\ dx\ x0\^3 + 
+        4\ dy\ r\^2\ y0 + 4\ dy\ R\^2\ y0 - 4\ dy\ x0\^2\ y0 - 
+        4\ dx\ x0\ y0\^2 - 4\ dy\ y0\^3 + 4\ dz\ r\^2\ z0 - 4\ dz\ R\^2\ z0 - 
+        4\ dz\ x0\^2\ z0 - 4\ dz\ y0\^2\ z0 - 4\ dx\ x0\ z0\^2 - 
+        4\ dy\ y0\ z0\^2 - 4\ dz\ z0\^3, 
+      2\ dx\^2\ r\^2 + 2\ dy\^2\ r\^2 + 2\ dz\^2\ r\^2 + 2\ dx\^2\ R\^2 + 
+        2\ dy\^2\ R\^2 - 2\ dz\^2\ R\^2 - 6\ dx\^2\ x0\^2 - 2\ dy\^2\ x0\^2 - 
+        2\ dz\^2\ x0\^2 - 8\ dx\ dy\ x0\ y0 - 2\ dx\^2\ y0\^2 - 
+        6\ dy\^2\ y0\^2 - 2\ dz\^2\ y0\^2 - 8\ dx\ dz\ x0\ z0 - 
+        8\ dy\ dz\ y0\ z0 - 2\ dx\^2\ z0\^2 - 2\ dy\^2\ z0\^2 - 
+        6\ dz\^2\ z0\^2, \(-4\)\ dx\^3\ x0 - 4\ dx\ dy\^2\ x0 - 
+        4\ dx\ dz\^2\ x0 - 4\ dx\^2\ dy\ y0 - 4\ dy\^3\ y0 - 
+        4\ dy\ dz\^2\ y0 - 4\ dx\^2\ dz\ z0 - 4\ dy\^2\ dz\ z0 - 
+        4\ dz\^3\ z0, \(-dx\^4\) - 2\ dx\^2\ dy\^2 - dy\^4 - 
+        2\ dx\^2\ dz\^2 - 2\ dy\^2\ dz\^2 - dz\^4}\)], "Output"]
+}, Open  ]]
+},
+FrontEndVersion->"5.0 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 695}},
+WindowSize->{496, 599},
+WindowMargins->{{Automatic, 32}, {Automatic, -6}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 84, 1, 38, "Input"],
+Cell[1863, 56, 169, 2, 63, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2069, 63, 213, 4, 74, "Input"],
+Cell[2285, 69, 1233, 18, 238, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

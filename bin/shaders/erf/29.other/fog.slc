@@ -1,0 +1,42 @@
+version Giles 0.3
+volume fog
+param float distance 0
+param color background 0 0 0
+local string $_str_2 "camera"
+local vector Icam 0 0 0
+local float d 0
+pushif 1
+popf distance
+pushif 0
+cset background
+return
+
+pushv I
+pushs $_str_2
+vtransforms
+popv Icam
+pushf distance
+pushv Icam
+length
+divff
+negf
+exp
+pushif 1
+subff
+popf d
+
+pushf d
+pushc background
+pushc Ci
+cmix
+popc Ci
+
+pushf d
+pushif 1
+pushif 1
+pushif 1
+pushc Oi
+cmix
+popc Oi
+
+return

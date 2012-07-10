@@ -1,0 +1,12 @@
+.info
+light	ambientlight
+
+.params
+float	intensity	1
+color	lightcolor	[1 1 1]
+.data
+vector	_Dv0	[0 0 0]
+.code
+mulv	Cl, lightcolor, intensity
+movv	L, _Dv0
+end

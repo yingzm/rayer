@@ -1,0 +1,60 @@
+Display "fog.tiff" "file" "rgb"
+
+Projection "perspective" "fov" [ 30 ]
+
+Translate 0 0 1
+
+WorldBegin
+Surface "defaultsurface"
+Atmosphere "fog" "distance" [ 2 ]
+	#1 Meter
+	Translate 0.3 0 0
+	Color [ 1 0 0 ]
+	Sphere 0.25 -0.25 0.25 360
+
+	Translate -0.2 0 0.5
+	Color [ 0 1 0 ]
+	Sphere 0.25 -0.25 0.25 360
+
+	Translate -0.2 0 0.5
+	Color [ 0 0 1 ]
+	Sphere 0.25 -0.25 0.25 360
+
+	Translate -0.2 0 0.5
+	Color [ 1 0 0 ]
+	Sphere 0.25 -0.25 0.25 360
+
+	#3 Meters
+	Translate -0.2 0 0.5
+	Color [ 0 1 0 ]
+	Sphere 0.25 -0.25 0.25 360
+
+	Translate -0.2 0 0.5
+	Color [ 0 0 1 ]
+	Sphere 0.25 -0.25 0.25 360
+
+	Translate -0.2 0 0.5
+	Color [ 1 0 0 ]
+	Sphere 0.25 -0.25 0.25 360
+
+	Translate -0.2 0 0.5
+	Color [ 0 1 0 ]
+	Sphere 0.25 -0.25 0.25 360
+
+	#5 Meters
+	Translate -0.2 0 0.5
+	Color [ 0 0 1 ]
+	Sphere 0.25 -0.25 0.25 360
+
+	Translate -0.2 0 0.5
+	Color [ 1 0 0 ]
+	Sphere 0.25 -0.25 0.25 360
+
+	Translate -0.2 0 0.5
+	Color [ 0 1 0 ]
+	Sphere 0.25 -0.25 0.25 360
+
+	Translate -0.2 0 0.5
+	Color [ 0 0 1 ]
+	Sphere 0.25 -0.25 0.25 360
+WorldEnd

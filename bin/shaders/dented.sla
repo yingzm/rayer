@@ -1,0 +1,142 @@
+.info
+displacement	dented
+
+.params
+float	Km	1
+float	power	3
+float	maxoctaves	6
+float	truedisp	1
+string	shadingspace	"shader"
+float	shadingfreq	1
+.data
+float	_Df0	1e-006
+float	_Df8	2
+float	_Df16	0.5
+float	_Df24	1
+float	_Df32	0
+float	_Df40	0.2
+float	_Df48	0.75
+.code
+addr	lstop, 240
+declare	point	Pshad	[0]
+declare	point	_T24	[24]
+declare	float	dPshad	[48]
+declare	float	_T56	[56]
+declare	float	magnitude	[64]
+declare	float	amp	[72]
+declare	point	pp	[80]
+declare	float	sum	[104]
+declare	float	fw	[112]
+declare	float	i	[120]
+declare	float	n	[128]
+declare	float	_T136	[136]
+declare	float	_T144	[144]
+declare	float	x0	[152]
+declare	float	x1	[160]
+declare	float	_T168	[168]
+declare	float	_T176	[176]
+declare	vector	_T184	[184]
+declare	float	spacescale	[208]
+declare	vector	Ndisp	[216]
+pushs	shadingspace
+pushv	P
+ccall	transform_psp
+popv	_T24
+mulv	Pshad, _T24, shadingfreq
+pushv	Pshad
+ccall	area_fp
+popf	_T56
+pushf	_T56
+ccall	sqrt_ff
+popf	_T56
+pushf	_T56
+pushf	_Df0
+ccall	max_fff
+popf	dPshad
+movf	amp, _Df24
+movv	pp, Pshad
+movf	sum, _Df32
+movf	fw, dPshad
+movf	i, _Df32
+_label0:
+ltf	i, maxoctaves
+jf	_label1
+pushv	pp
+ccall	noise_fp
+popf	_T56
+mulf	_T136, _Df8, _T56
+subf	_T136, _T136, _Df24
+pushf	_Df40
+pushf	_Df48
+pushf	fw
+ccall	smoothstep_ffff
+popf	_T144
+subf	_T144, _Df24, _T144
+mulf	n, _T136, _T144
+mulf	_T136, _Df16, fw
+subf	x0, n, _T136
+addf	x1, x0, fw
+pushf	x1
+ccall	sign_ff
+popf	_T144
+mulf	_T136, _T144, _Df16
+mulf	_T144, _T136, x1
+mulf	_T136, _T144, x1
+movf	_T144, _T136
+pushf	x0
+ccall	sign_ff
+popf	_T168
+mulf	_T168, _T168, _Df16
+mulf	_T168, _T168, x0
+mulf	_T168, _T168, x0
+movf	_T176, _T168
+subf	_T144, _T144, _T176
+divf	_T176, _T144, fw
+movf	_T144, _T176
+mulf	x0, amp, _T144
+addf	sum, sum, x0
+mulf	amp, amp, _Df16
+mulv	pp, pp,	_Df8
+mulf	fw, fw, _Df8
+addf	i, i, _Df24
+jmp	_label0
+_label1:
+movf	magnitude, sum
+mulf	x1, _Df8, shadingfreq
+divf	_T144, magnitude, x1
+pushf	_T144
+pushf	power
+ccall	pow_fff
+popf	magnitude
+pushv	N
+ccall	normalize_vv
+popv	_T184
+negf	n
+mulf	amp, n, magnitude
+pushs	shadingspace
+pushv	_T184
+ccall	vtransform_vsv
+popv	_T184
+pushv	_T184
+ccall	length_fv
+popf	spacescale
+pushf	spacescale
+pushf	_Df0
+ccall	max_fff
+popf	fw
+divf	i, amp, fw
+mulv	Ndisp, _T184,	i
+mulv	_T184, Ndisp, truedisp
+addv	P, P, _T184
+subf	sum, _Df24, truedisp
+mulv	_T184, Ndisp, sum
+addv	_T24, P, _T184
+pushv	_T24
+ccall	calculatenormal_vp
+popv	_T184
+pushv	_T184
+ccall	normalize_vv
+popv	_T184
+movv	N, _T184
+subr	lstop, 240
+end

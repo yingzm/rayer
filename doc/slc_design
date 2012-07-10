@@ -1,0 +1,4 @@
+Slc design
+
+* Slc is a binary file of compiled shader with suffix slc. This coincides with BMRT because I can't figure out another better name. 
+* 

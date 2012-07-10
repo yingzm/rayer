@@ -1,0 +1,90 @@
+version Giles 0.3
+surface reflect
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float Kr 0
+param float roughness 0
+param color specularcolor 0 0 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+local vector Rcurrent 0 0 0
+local string $_str_10 "world"
+local vector Rworld 0 0 0
+local string $_str_12 "studio2.jpg"
+local color Cr 0 0 0
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .4
+popf Ks
+pushif .3
+popf Kr
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushv Nf
+pushv I
+reflect
+popv Rcurrent
+pushv Rcurrent
+pushs $_str_10
+vtransforms
+popv Rworld
+pushv Rworld
+pushif 0
+pushs $_str_12
+pushif 1
+pushif 0
+cenvironment
+popc Cr
+
+
+pushc Cs
+popc Ct
+
+pushc Os
+popc Oi
+
+pushc Cr
+pushf Kr
+mulfc
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf Ks
+mulfc
+addcc
+pushc specularcolor
+mulcc
+pushv Nf
+diffuse
+pushf Kd
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Ct
+mulcc
+addcc
+pushc Oi
+mulcc
+popc Ci
+
+return

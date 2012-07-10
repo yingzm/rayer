@@ -1,0 +1,13 @@
+Display "samples3.tiff" "file" "rgb"
+Format 160 120 1.0
+Clipping 5 15
+PixelSamples 3 3
+
+Projection "perspective" "fov" [ 25 ]
+
+#move the WORLD back 10 units
+Translate 0 0 10
+
+WorldBegin
+	Sphere 2 -2 2 360
+WorldEnd

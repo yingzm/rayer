@@ -1,0 +1,87 @@
+version Giles 0.3
+surface map
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+local float freq 0
+local color rust 0 0 0
+local string $_str_9 "rustControl.tiff"
+local float surfaceType 0
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushif 20
+popf freq
+pushif 0.2
+pushif 0.2
+pushif 1
+pushf freq
+pushf t
+mulff
+pushf freq
+pushf s
+mulff
+noiseff
+mulfc
+popc rust
+pushif 0
+pushs $_str_9
+pushif 0
+pushif 0
+ftexture
+popf surfaceType
+
+
+pushf surfaceType
+pushc rust
+pushc Cs
+cmix
+popc Ct
+
+pushc Os
+popc Oi
+
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf surfaceType
+pushif 1
+subff
+mulfc
+pushv Nf
+diffuse
+pushf surfaceType
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+addcc
+pushc Ct
+mulcc
+pushc Oi
+mulcc
+popc Ci
+
+return

@@ -1,0 +1,392 @@
+Display "robot.tif" "file" "rgb"
+Projection "perspective" 
+
+
+# View settings
+Translate -7 -15 20
+Rotate -40 0 1 0
+
+WorldBegin
+
+# Oil Can
+
+TransformBegin
+	
+	Translate 9 21 -15
+	Rotate -90 1 0 0
+#####
+	Rotate 50 0 0 1
+	AttributeBegin
+	Color 1 0 0
+	Cylinder 1.5 -1.5 1.5 360
+	Disk -1.4 1.5 360	
+
+	TransformBegin
+		Translate 0 0 1.5
+		Cone 0.5 1.5 360
+	TransformEnd
+
+	TransformBegin
+		Translate 1.5 0 1
+		Rotate 90 1 0 0 
+		Torus 1 0.2 0 360 360
+	TransformEnd
+	AttributeEnd
+	
+	Translate -1 0 1.5
+	Rotate -20 0 1 0
+	Cylinder 0.2 0 1 360 
+	Translate 0 0 1
+	Rotate -20 0 1 0
+	Cylinder 0.2 0 1 360
+	Translate 0 0 1
+	Rotate -20 0 1 0
+	Cylinder 0.2 0 1 360
+	Translate 0 0 1
+	Rotate -20 0 1 0
+	Cylinder 0.2 0 1 360
+	Translate 0 0 1
+	Rotate -20 0 1 0
+	Cylinder 0.2 0 1 360
+
+	Translate 0 0 1
+	Cone 0.5 0.2 360
+TransformEnd
+
+
+# Colour
+AttributeBegin
+	Color 0.95 0.95 1
+
+# Right Foot and Leg
+TransformBegin
+	Translate -4 1 4.6 
+	Rotate -90 1 0 0
+#####
+	Rotate -30 1 0 0 	
+
+	Sphere 2 0 2 360
+	Disk 0 2 360
+	TransformBegin
+		Rotate 7 0 1 0
+		Cylinder 1 1 5 360
+		Translate 0 0 5
+		Sphere 1.3 -1.3 1.3 360
+		Rotate 8 0 1 0
+		Cylinder 1 1 5 360
+		Translate 0 0 5
+		Sphere 2 -2 2 360	
+	TransformEnd	
+TransformEnd
+
+# Toes x 3
+TransformBegin
+#######
+	Rotate -30 1 0 0 
+# Same as foot and leg displacement
+	Translate 0 -1 4.6
+
+	TransformBegin
+		Translate -4 0.5 0
+		Cylinder 0.5 -1 -2.5 360
+		Translate 0 0 -2.5
+		Sphere 0.5 -0.5 0 360
+	TransformEnd
+	TransformBegin
+		Translate -4.75 0.5 0
+		Rotate 10 0 1 0
+		Cylinder 0.5 -1 -2.5 360
+		Translate 0 0 -2.5
+		Sphere 0.5 -0.5 0 360
+	TransformEnd
+	TransformBegin
+		Translate -3.25 0.5 0
+		Rotate -10 0 1 0
+		Cylinder 0.5 -1 -2.5 360
+		Translate 0 0 -2.5
+		Sphere 0.5 -0.5 0 360
+	TransformEnd
+TransformEnd
+
+
+# Left Foot and Leg
+TransformBegin
+	Translate 4 0 -3 
+	Rotate -90 1 0 0
+	Sphere 2 0 2 360
+	Disk 0 2 360
+	TransformBegin
+#####
+		Rotate 10 1 0 0
+ 
+		Rotate -7 0 1 0
+		Cylinder 1 1 5 360
+		Translate 0 0 5
+		Sphere 1.3 -1.3 1.3 360
+		Rotate -8 0 1 0
+		Cylinder 1 1 5 360
+		Translate 0 0 5
+		Sphere 2 -2 2 360	
+	TransformEnd	
+TransformEnd
+
+# Toes x 3
+TransformBegin
+# Same as above in z
+	Translate 0 0 -3
+
+	TransformBegin
+		Translate 4 0.5 0
+		Cylinder 0.5 -1 -2.5 360
+		Translate 0 0 -2.5
+		Sphere 0.5 -0.5 0 360
+	TransformEnd
+	TransformBegin
+		Translate 4.75 0.5 0
+		Rotate -10 0 1 0
+		Cylinder 0.5 -1 -2.5 360
+		Translate 0 0 -2.5
+		Sphere 0.5 -0.5 0 360
+	TransformEnd
+	TransformBegin
+		Translate 3.25 0.5 0
+		Rotate 10 0 1 0
+		Cylinder 0.5 -1 -2.5 360
+		Translate 0 0 -2.5
+		Sphere 0.5 -0.5 0 360
+	TransformEnd
+TransformEnd
+
+# Torso
+	Translate 0 8 0 
+
+#######
+	Rotate -20 1 0 0
+#	Rotate 15 0 0 1
+
+	Rotate -90 1 0 0 
+	Paraboloid 3 0 4 360
+	Disk 4 3 360
+	Translate 0 0 4
+	Cylinder 2 0 5 360
+TransformBegin	
+	Translate 0 0 1
+	Torus 2 0.5 -90 90 360
+	Translate 0 0 1.5
+	Torus 2 0.5 -90 90 360	
+	Translate 0 0 1.5
+	Torus 2 0.5 -90 90 360	
+TransformEnd
+
+	Translate 0 0 5.5
+
+# Shoulders
+TransformBegin
+	Rotate 90 0 1 0
+	Cylinder 2 -3.5 3.5 360
+	TransformBegin
+		Rotate -90 0 1 0 
+		Translate 2 2 0 
+		Rotate 90 1 0 0
+		Cone -0.3 0.5 360
+		Translate -4 0 0
+		Cone -0.3 0.5 360
+	TransformEnd
+	TransformBegin
+		Translate 0 0 3.5
+		Cone 2 2 360
+		Translate 0 0 -7
+		Cone -2 2 360	
+	TransformEnd
+TransformEnd
+
+# Head
+TransformBegin
+#########
+	Rotate 15 1 0 0
+	Rotate -10 0 0 1 
+	Translate 0 0 4
+	Cylinder 1 -2.2 0 360
+# Throat
+	TransformBegin
+		Translate 0 0.8 -1.5
+		Rotate 90 1 0 0 
+		Cone -0.6 0.5 360
+	TransformEnd
+
+	Cylinder 2 0 2.5 360
+	TransformBegin
+		Translate 0 0 2.5
+		Sphere 2 0 2 360
+	TransformEnd
+
+	Cylinder 2.2 -0.3 1 180
+	Disk 1 2.2 180
+	Disk 0.1 2.4 180
+	Disk 0.2 2.3 180
+	Disk 0.3 2.3 180
+	Disk 0.4 2.3 180
+	Disk 0.5 2.3 180
+	Disk 0.6 2.4 180
+
+# Eyes
+	TransformBegin
+		Translate 0.8 2 1.8
+		Rotate -90 1 0 0
+		Cylinder 0.6 -0.2 0.2 360
+		AttributeBegin
+			Opacity 0 1 1
+			Sphere 0.5 -0.4 0.4 360
+		AttributeEnd
+		Translate -1.6 0 0
+		Cylinder 0.6 -0.2 0.2 360
+		AttributeBegin
+			Opacity 0 1 1
+			Sphere 0.5 -0.4 0.4 360
+		AttributeEnd
+	TransformEnd
+# Ears
+	TransformBegin
+		Translate -2 0 1.6
+		Rotate -90 1 0 0
+		Cone -0.5 0.6 360
+		Translate 4 0 0
+		Rotate 180 1 0 0
+		Cone -0.5 0.6 360
+	TransformEnd
+
+# Nose
+	Translate 0 2 1
+	Cone 0.5 0.5 180
+TransformEnd
+
+#Arms
+# Right arm
+TransformBegin
+	Translate -5.3 0 0
+########
+	Rotate -50 1 0 0 
+	Rotate -5 0 1 0
+
+	Cylinder 0.8 -4 0 360
+	Sphere 1.4 -1.4 1.4 360
+	Translate 0 0 -4
+# Elbow
+########
+	Rotate 40 1 0 0
+	TransformBegin
+		Rotate -90 0 1 0
+		Cylinder 1 -1 1 360
+		Disk 1 1 360
+		Disk -1 1 360
+	TransformEnd
+
+	Translate -0.4 0 0 
+	Cylinder 0.4 -1 -4 360
+	Translate 0.8 0 0 
+	Cylinder 0.4 -1 -4 360
+	Translate -0.4 0 -4
+
+# Hand
+	TransformBegin
+		Rotate 90 1 0 0 
+		Cylinder 1 -0.4 0.4 360
+		Disk 0.4 1 360
+		Disk -0.4 1 360
+		Rotate 90 0 1 0 
+		Rotate 20 1 0 0
+		Cylinder 1.1 -0.4 0.4 360
+		Disk 0.4 1.1 360
+		Disk -0.4 1.1 360
+	TransformEnd
+
+# Fingers x2
+	Rotate 20 0 1 0
+	TransformBegin
+		Rotate 15 1 0 0
+		Cylinder 0.3 -1 -2.5 360
+		Translate 0 0 -2.5
+		Sphere 0.3 -0.3 0 360
+	TransformEnd
+	TransformBegin
+		Rotate -15 1 0 0
+		Cylinder 0.3 -1 -2.5 360
+		Translate 0 0 -2.5
+		Sphere 0.3 -0.3 0 360
+	TransformEnd
+
+# Thumb
+	Rotate -50 0 1 0
+	TransformBegin
+		Cylinder 0.4 -1 -2 360
+		Translate 0 0 -2
+		Sphere 0.4 -0.3 0 360
+	TransformEnd
+TransformEnd
+
+# Left arm
+TransformBegin
+	Translate 5.3 0 0
+	Rotate 180 0 0 1
+########
+	Rotate -95 1 0 0
+	Rotate 10 0 1 0	
+
+	Cylinder 0.8 -4 0 360
+	Sphere 1.4 -1.4 1.4 360
+	Translate 0 0 -4
+# Elbow
+########
+	Rotate -30 1 0 0
+	TransformBegin
+		Rotate -90 0 1 0
+		Cylinder 1 -1 1 360
+		Disk 1 1 360
+		Disk -1 1 360
+	TransformEnd
+
+	Translate -0.4 0 0 
+	Cylinder 0.4 -1 -4 360
+	Translate 0.8 0 0 
+	Cylinder 0.4 -1 -4 360
+	Translate -0.4 0 -4
+
+# Hand
+	TransformBegin
+		Rotate 90 1 0 0 
+		Cylinder 1 -0.4 0.4 360
+		Disk 0.4 1 360
+		Disk -0.4 1 360
+		Rotate 90 0 1 0 
+		Rotate 20 1 0 0
+		Cylinder 1.1 -0.4 0.4 360
+		Disk 0.4 1.1 360
+		Disk -0.4 1.1 360
+	TransformEnd
+
+# Fingers x2
+	Rotate 20 0 1 0
+	TransformBegin
+		Rotate 15 1 0 0
+		Cylinder 0.3 -1 -2.5 360
+		Translate 0 0 -2.5
+		Sphere 0.3 -0.3 0 360
+	TransformEnd
+	TransformBegin
+		Rotate -15 1 0 0
+		Cylinder 0.3 -1 -2.5 360
+		Translate 0 0 -2.5
+		Sphere 0.3 -0.3 0 360
+	TransformEnd
+
+# Thumb
+	Rotate -50 0 1 0
+	TransformBegin
+		Cylinder 0.4 -1 -2 360
+		Translate 0 0 -2
+		Sphere 0.4 -0.3 0 360
+	TransformEnd
+TransformEnd
+
+AttributeEnd
+WorldEnd

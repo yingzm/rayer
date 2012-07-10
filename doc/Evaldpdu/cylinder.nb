@@ -1,0 +1,203 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.0'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      3331,        132]*)
+(*NotebookOutlinePosition[      3976,        154]*)
+(*  CellTagsIndexPosition[      3932,        150]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+    \(theta\  = \ u*thetamax\), "\[IndentingNewLine]", 
+    \(x\  = \ radius*cos[theta]\), "\[IndentingNewLine]", 
+    \(y\  = \ radius*sin[theta]\), "\[IndentingNewLine]", 
+    \(z\  = \ v*\((zmax - zmin)\)\)}], "Input"],
+
+Cell[BoxData[
+    \(thetamax\ u\)], "Output"],
+
+Cell[BoxData[
+    \(radius\ cos[thetamax\ u]\)], "Output"],
+
+Cell[BoxData[
+    \(radius\ sin[thetamax\ u]\)], "Output"],
+
+Cell[BoxData[
+    \(v\ \((zmax - zmin)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[PartialD]\_u\ x\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{"radius", " ", "thetamax", " ", 
+      RowBox[{
+        SuperscriptBox["cos", "\[Prime]",
+          MultilineFunction->None], "[", \(thetamax\ u\), "]"}]}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[PartialD]\_u\ y\)], "Input"],
+
+Cell[BoxData[
+    RowBox[{"radius", " ", "thetamax", " ", 
+      RowBox[{
+        SuperscriptBox["sin", "\[Prime]",
+          MultilineFunction->None], "[", \(thetamax\ u\), "]"}]}]], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[PartialD]\_u\ z\)], "Input"],
+
+Cell[BoxData[
+    \(0\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[PartialD]\_v\ x\)], "Input"],
+
+Cell[BoxData[
+    \(0\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[PartialD]\_v\ y\)], "Input"],
+
+Cell[BoxData[
+    \(0\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\[PartialD]\_v\ z\)], "Input"],
+
+Cell[BoxData[
+    \(zmax - zmin\)], "Output"]
+}, Open  ]]
+},
+FrontEndVersion->"5.0 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 695}},
+WindowSize->{496, 599},
+WindowMargins->{{36, Automatic}, {23, Automatic}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 236, 4, 90, "Input"],
+Cell[2015, 59, 45, 1, 29, "Output"],
+Cell[2063, 62, 58, 1, 29, "Output"],
+Cell[2124, 65, 58, 1, 29, "Output"],
+Cell[2185, 68, 54, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2276, 74, 50, 1, 30, "Input"],
+Cell[2329, 77, 193, 4, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2559, 86, 50, 1, 30, "Input"],
+Cell[2612, 89, 193, 4, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2842, 98, 50, 1, 30, "Input"],
+Cell[2895, 101, 35, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2967, 107, 50, 1, 30, "Input"],
+Cell[3020, 110, 35, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3092, 116, 50, 1, 30, "Input"],
+Cell[3145, 119, 35, 1, 29, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3217, 125, 50, 1, 30, "Input"],
+Cell[3270, 128, 45, 1, 29, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

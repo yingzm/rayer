@@ -1,0 +1,91 @@
+version Giles 0.3
+surface satinU
+param float roughness 0
+param color specularcolor 0 0 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Caniso 0 0 0
+local vector dir 0 0 0
+local vector H 0 0 0
+local float scale 0
+pushif 0.1
+popf roughness
+pushif 1
+cset specularcolor
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushif 0
+cset Caniso
+pushv P
+Duv
+normalize
+popv dir
+
+pushif 2
+pushif 3.141593
+divff
+pushv Nf
+pushv P
+illuminance_start
+label 0
+illuminance3 1
+pushv L
+normalize
+pushv V
+normalize
+addvv
+normalize
+popv H
+pushv dir
+pushv H
+vdot
+pushv dir
+pushv H
+vdot
+mulff
+pushif 1
+subff
+sqrt
+popf scale
+
+pushf roughness
+pushif 1
+divff
+pushf scale
+pow
+pushc Cl
+mulcf
+pushc Caniso
+addcc
+popc Caniso
+
+jump 0
+label 1
+
+pushc Os
+popc Oi
+
+pushv Nf
+diffuse
+pushif 0.2
+mulfc
+ambient
+addcc
+pushc Cs
+mulcc
+pushc Caniso
+addcc
+pushc Os
+mulcc
+popc Ci
+
+return

@@ -1,0 +1,9 @@
+#tube.rib
+#rotating an object
+Projection "perspective" "fov" 40
+WorldBegin
+	Translate 0 0 5
+	Rotate -90 1 0 0
+	Color 1 0 0
+	Cylinder 1 -1 1 360
+WorldEnd

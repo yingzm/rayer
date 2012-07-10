@@ -1,0 +1,108 @@
+version Giles 0.3
+surface turbulance
+param float Ka 0
+param float Kd 0
+param float Ks 0
+param float roughness 0
+param color specularcolor 0 0 0
+local normal Nf 0 0 0
+local vector V 0 0 0
+local color Ct 0 0 0
+local float i 0
+local float mag 0
+local float freq 0
+pushif 1
+popf Ka
+pushif .5
+popf Kd
+pushif .5
+popf Ks
+pushif .1
+popf roughness
+pushif 1
+cset specularcolor
+return
+
+pushv I
+pushv N
+normalize
+faceforward
+popv Nf
+pushv I
+normalize
+negv
+popv V
+pushif 0
+popf mag
+pushif 1
+popf freq
+
+
+pushif 0
+popf i
+label 0
+pushif 6
+pushf i
+lt
+ifz 1
+
+
+
+pushf freq
+pushif 2
+pushif 0.5
+pushf freq
+pushv P
+mulvf
+noisev
+subff
+abs
+mulff
+divff
+pushf mag
+addff
+popf mag
+
+pushif 2
+pushf freq
+mulff
+popf freq
+
+pushif 1
+pushf i
+addff
+popf i
+jump 0
+
+label 1
+
+pushf mag
+cset Ct
+
+pushc Os
+popc Oi
+
+pushf roughness
+pushv V
+pushv Nf
+specular
+pushf Ks
+pushc specularcolor
+mulcf
+mulcc
+pushv Nf
+diffuse
+pushf Kd
+mulfc
+ambient
+pushf Ka
+mulfc
+addcc
+pushc Ct
+mulcc
+addcc
+pushc Oi
+mulcc
+popc Ci
+
+return

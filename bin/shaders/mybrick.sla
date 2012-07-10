@@ -1,0 +1,173 @@
+.info
+surface	mybrick
+
+.params
+float	Ka	1
+float	Kd	1
+color	Cbrick	[0.5 0.15 0.14]
+color	Cmortar	[0.5 0.5 0.5]
+float	Km	0.1
+.data
+float	_Df0	0.25
+float	_Df8	0.01
+float	_Df16	0.5
+float	_Df24	1
+float	_Df32	0.08
+float	_Df40	0
+.code
+addr	lstop, 280
+declare	color	Ct	[0]
+declare	normal	Nf	[24]
+declare	float	ss	[48]
+declare	float	tt	[56]
+declare	float	sbrick	[64]
+declare	float	tbrick	[72]
+declare	float	w	[80]
+declare	float	h	[88]
+declare	float	scoord	[96]
+declare	float	tcoord	[104]
+declare	float	sbump	[112]
+declare	float	tbump	[120]
+declare	float	stbump	[128]
+declare	vector	_T136	[136]
+declare	float	_T160	[160]
+declare	float	_T168	[168]
+declare	float	_T176	[176]
+declare	point	_T184	[184]
+declare	color	_T208	[208]
+declare	color	_T232	[232]
+declare	color	_T256	[256]
+movf	scoord, s
+movf	tcoord, t
+pushv	N
+pushv	I
+ccall	faceforward_vvv
+popv	_T136
+pushv	_T136
+ccall	normalize_vv
+popv	Nf
+addf	_T160, _Df0, _Df8
+divf	ss, scoord, _T160
+addf	_T160, _Df0, _Df8
+divf	tt, tcoord, _T160
+mulf	_T160, tt, _Df16
+pushf	_T160
+pushf	_Df24
+ccall	mod_fff
+popf	_T160
+gtf	_T160, _Df16
+jf	_label0
+addf	ss, ss, _Df16
+_label0:
+pushf	ss
+ccall	floor_ff
+popf	sbrick
+pushf	tt
+ccall	floor_ff
+popf	tbrick
+subf	ss, ss, sbrick
+subf	tt, tt, tbrick
+mulf	_T160, _Df8, _Df16
+addf	_T168, _Df0, _Df8
+divf	_T160, _T160, _T168
+pushf	_T160
+pushf	ss
+ccall	step_fff
+popf	_T168
+mulf	_T160, _Df8, _Df16
+addf	_T176, _Df0, _Df8
+divf	_T160, _T160, _T176
+subf	_T176, _Df24, _T160
+pushf	_T176
+pushf	ss
+ccall	step_fff
+popf	_T160
+subf	w, _T168, _T160
+mulf	_T176, _Df8, _Df16
+addf	_T168, _Df32, _Df8
+divf	_T160, _T176, _T168
+pushf	_T160
+pushf	tt
+ccall	step_fff
+popf	_T176
+mulf	_T168, _Df8, _Df16
+addf	_T160, _Df32, _Df8
+divf	_T168, _T168, _T160
+subf	_T160, _Df24, _T168
+pushf	_T160
+pushf	tt
+ccall	step_fff
+popf	_T168
+subf	h, _T176, _T168
+mulf	_T160, _Df8, _Df16
+addf	_T176, _Df0, _Df8
+divf	_T168, _T160, _T176
+pushf	_Df40
+pushf	_T168
+pushf	ss
+ccall	smoothstep_ffff
+popf	_T160
+mulf	_T176, _Df8, _Df16
+addf	_T168, _Df0, _Df8
+divf	_T176, _T176, _T168
+subf	_T168, _Df24, _T176
+pushf	_T168
+pushf	_Df24
+pushf	ss
+ccall	smoothstep_ffff
+popf	_T176
+subf	sbump, _T160, _T176
+mulf	_T168, _Df8, _Df16
+addf	_T160, _Df32, _Df8
+divf	_T176, _T168, _T160
+pushf	_Df40
+pushf	_T176
+pushf	tt
+ccall	smoothstep_ffff
+popf	_T168
+mulf	_T160, _Df8, _Df16
+addf	_T176, _Df32, _Df8
+divf	_T160, _T160, _T176
+subf	_T176, _Df24, _T160
+pushf	_T176
+pushf	_Df24
+pushf	tt
+ccall	smoothstep_ffff
+popf	_T160
+subf	tbump, _T168, _T160
+addf	stbump, sbump, tbump
+pushv	N
+ccall	normalize_vv
+popv	_T136
+mulv	_T136, _T136,	stbump
+mulv	_T136, _T136,	Km
+addv	_T184, P, _T136
+pushv	_T184
+ccall	calculatenormal_vp
+popv	Nf
+pushv	Nf
+pushv	I
+ccall	faceforward_vvv
+popv	_T136
+pushv	_T136
+ccall	normalize_vv
+popv	Nf
+mulf	_T176, w, h
+pushv	Cmortar
+pushv	Cbrick
+pushf	_T176
+ccall	mix_cccf
+popv	Ct
+movv	Oi, Os
+mulvv	_T208, Os, Ct
+ccall	ambient_c_
+popv	_T232
+mulv	_T232, _T232, Ka
+pushv	Nf
+ccall	diffuse_cv
+popv	_T256
+mulv	_T256, _T256, Kd
+addv	_T232, _T232, _T256
+mulvv	Ci, _T208, _T232
+subr	lstop, 280
+end

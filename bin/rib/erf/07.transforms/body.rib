@@ -1,0 +1,45 @@
+#body.rib
+Display "body.tiff" "file" "rgb"
+Projection "perspective"
+WorldBegin
+	#move everything back
+	Translate 0 0 3
+	Translate 0 -1 0
+	
+	TransformBegin
+		Translate 0 1.5 0 
+		Scale 0.5 0.5 0.5
+		Rotate -30 0 1 0
+		
+		#Head
+		Sphere 1 -1 1 360
+		
+		TransformBegin
+			#Ears
+			Translate 0 1.3 0
+			TransformBegin
+				#Left Ear
+				Translate -0.75 0 0
+				Scale 0.5 0.5 0.5
+				Sphere 1 -1 1 360
+			TransformEnd
+			
+			TransformBegin
+				#Right Ear
+				Translate 0.75 0 0
+				Scale 0.5 0.5 0.5
+				Sphere 1 -1 1 360
+			TransformEnd
+		TransformEnd
+		
+		TransformBegin
+			#Nose
+			Translate 0 0 -1.1
+			Scale 0.3 0.3 0.5
+			Sphere 1 -1 1 360
+		TransformEnd
+	TransformEnd
+
+	#Body
+	Sphere 1 -1 1 360
+WorldEnd

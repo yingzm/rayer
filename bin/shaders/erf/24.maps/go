@@ -1,0 +1,9 @@
+cp ../../textures/rock.tiff ../../textures/pebbles.tiff .
+for i in *.sl
+do
+echo $i
+TIFF=`basename $i .sl`.tiff
+giles $i
+slander -r400 -g2.0  -w$TIFF ${i}c:Cs=1,0,0
+viewer $TIFF
+done

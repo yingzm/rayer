@@ -1,0 +1,35 @@
+version Giles 0.3
+volume depthfade
+param float mindistance 0
+param float maxdistance 0
+param color background 0 0 0
+local float d 0
+local string $_str_4 "camera"
+local vector Icam 0 0 0
+pushif 1
+popf mindistance
+pushif 9
+popf maxdistance
+pushif 0
+cset background
+return
+
+pushv I
+pushs $_str_4
+vtransforms
+popv Icam
+
+pushv Icam
+length
+pushf maxdistance
+pushf mindistance
+smoothstep
+popf d
+
+pushf d
+pushc background
+pushc Ci
+cmix
+popc Ci
+
+return

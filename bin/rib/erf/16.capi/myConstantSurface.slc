@@ -1,0 +1,20 @@
+version Giles 0.1
+surface myConstantSurface
+param color customColor 0 0 0
+pushif 0
+pushif 1
+pushif 0
+popc customColor
+return
+
+
+pushc Os
+popc Oi
+
+pushf s
+pushc Cs
+pushc customColor
+cmix
+popc Ci
+
+return

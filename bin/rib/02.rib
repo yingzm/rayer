@@ -1,0 +1,7 @@
+#perspective disk.rib
+#setting a perspective view
+Projection "perspective" "fov" 40
+WorldBegin
+	Translate 0 0 3
+	Disk 0 0.5 360
+WorldEnd

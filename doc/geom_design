@@ -1,0 +1,42 @@
+Classes:
+	IntersectCache
+	GeomSamplerInfo			// return evaluated geometry values
+	MeshVertex
+	GeomObj
+		SphereObj
+		CubeObj
+		MeshObj
+		NurbsObj
+
+Class Detail:
+
+class IntersectCache 
+{
+	point3d m_intpt;
+};
+
+class GeomSamplerInfo
+{
+	point3d m_pt;
+	unit_vector3d m_normal;
+	vector3d m_1stderv;
+	vector3d m_2ndderv;
+
+	double m_uv[2];	// u, v values for nurbs and patch
+			// s, t values for mesh
+};
+
+class MeshVertex 
+{
+	point3d m_pt;
+	double m_uv[2];	
+};
+
+class GeomObj
+{
+public:
+	// public methods
+	bool IntersectNearest(const Ray &r, IntersectCache &ic);
+
+	void Eval(IntersectCache &ic, GeomSamplerInfo &si);
+};

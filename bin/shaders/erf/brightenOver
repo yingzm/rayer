@@ -1,0 +1,10 @@
+for i in [0-9]*
+do
+echo $i
+cd $i
+pwd
+../brightenSL *.slc
+../brighten *.rib
+cd ..
+done
+

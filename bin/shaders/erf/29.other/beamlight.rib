@@ -1,0 +1,22 @@
+#beamlight.rib
+Display "beamlight.tiff" "file" "rgb"
+Clipping 1 10
+Projection "perspective" "fov" [ 25 ]
+
+Translate 1 -0.5 8
+Rotate -45 1 0 0
+WorldBegin
+        LightSource "ambientlight" 1 "intensity" [ 0.1]
+        LightSource "beamlight" 2
+                "from" [ 1 1 0 ]
+                "to" [ 0 0 0 ]
+                "intensity" [ 3 ]
+
+	Surface "plastic"
+	Color [ 0 1 0 ]
+	Patch "bilinear" "P" [ -5 0 -5
+			       5 0 -5
+			      -5 0 5
+			       5 0 5 ]
+
+WorldEnd

@@ -1,0 +1,7 @@
+for i in $*
+do
+echo $i
+echo Exposure 1.0 2.0 |
+cat - $i |
+prman
+done
